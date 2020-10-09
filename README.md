@@ -2,6 +2,6 @@
 
 ## Netlify
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ee4c4657-f23e-41f9-9a78-b91a5f2d9065/deploy-status)](https://app.netlify.com/sites/awesome-bohr-265b45/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5354633-b55f-4899-adcb-100b7fcb2bc2/deploy-status)](https://app.netlify.com/sites/naughty-saha-b231df/deploys)
 
-https://awesome-bohr-265b45.netlify.app/
+https://naughty-saha-b231df.netlify.app/
