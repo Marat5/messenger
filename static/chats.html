@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чаты</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="chats.css">
+</head>
+
+<body>
+    <div class="wrapper row">
+        <div class="chat-list">
+            <div class="chat-list__option">
+                <div class="user__pic_big"></div>
+                <div class="user__info_stretch">
+                    <p class="user__name">Гриша</p>
+                    <p class="user__last-message">Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquam
+                        iusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение вот
+                        такое вот</p>
+                </div>
+                <div class="other-chat-info">
+                    <div class='last-message-time'>
+                        12:14
+                    </div>
+                    <div class='unread-messages-number'>
+                        6
+                    </div>
+                </div>
+            </div>
+            <div class="chat-list__option">
+                <div class="user__pic_big"></div>
+                <div class="user__info_stretch">
+                    <p class="user__name">Аня</p>
+                    <p class="user__last-message">Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquam
+                        iusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение вот
+                        такое вот</p>
+                </div>
+                <div class="other-chat-info">
+                    <div class='last-message-time'>
+                        12:14
+                    </div>
+                    <div class='unread-messages-number'>
+                        6123
+                    </div>
+                </div>
+            </div>
+            <div class="chat-list__option">
+                <div class="user__pic_big"></div>
+                <div class="user__info_stretch">
+                    <p class="user__name">Полина</p>
+                    <p class="user__last-message">Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquam
+                        iusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение вот
+                        такое вот</p>
+                </div>
+                <div class="other-chat-info">
+                    <div class='last-message-time'>
+                        12:14
+                    </div>
+                    <div class='unread-messages-number'>
+                        12
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-mainspace">
+            <div class="chat-mainspace__header">
+                <div class="user__container">
+                    <div class="user__pic"></div>
+                    <div class="user__info">
+                        <p class="user__name">Вадим</p>
+                        <p class="user__online">Был в сети 5 минут назад</p>
+                    </div>
+                </div>
+                <div class="more-button">
+                    <div class="more-button__circle"></div>
+                    <div class="more-button__circle"></div>
+                    <div class="more-button__circle"></div>
+                </div>
+            </div>
+            <div class="chat-mainspace__history">
+                <p class="history__date">19 июня</p>
+                <div class="history__message his-message">
+                    <div class="history__his-message-container">
+                        <div class="message-info">10:00</div>
+                        <p class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
+                            facilis eveniet
+                            molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
+                            harum distinctio nihil eum ducimus assumenda perspiciatis?</p>
+                    </div>
+                </div>
+                <div class="history__message my-message">
+                    <div class="history__my-message-container">
+                        <div class="message-info">10:00</div>
+                        <p class="message-text">message</p>
+                    </div>
+                </div>
+                <div class="history__message his-message">
+                    <div class="history__his-message-container">
+                        <div class="message-info">10:00</div>
+                        <p class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
+                            facilis eveniet
+                            molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
+                            harum distinctio nihil eum ducimus assumenda perspiciatis?</p>
+                    </div>
+                </div>
+                <div class="history__message my-message">
+                    <div class="history__my-message-container">
+                        <div class="message-info">Прочитано 10:00</div>
+                        <p class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dolorem
+                            rem similique quidem
+                            suscipit alias sit dicta soluta optio provident impedit, aliquid itaque blanditiis deleniti
+                            earum, id ratione non nobis.</p>
+
+                    </div>
+                </div>
+            </div>
+            <form class="chat-mainspace__footer">
+                <div class="add-file-button">
+                    <p>
+                        <файл>
+                    </p>
+                </div>
+                <div class="new-message-container">
+                    <input name="message" id="message" class="message-input" type="text" placeholder="Сообщение">
+                </div>
+                <input type="submit" value=">" class="send-button">
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(formData.get('message'))
+    });
+</script>
+
+</html>

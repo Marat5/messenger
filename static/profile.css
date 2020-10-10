@@ -1,0 +1,33 @@
+.profile-picture {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: seagreen;
+}
+
+.profile-name {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.profile__form {
+    margin-top: 40px;
+    width: 600px;
+    text-align: center;
+}
+
+.profile__textfield {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eaeaea;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.profile__textfield input {
+    text-align: right;
+}
+
+.profile__textfield:last-of-type {
+    margin-bottom: 40px;
+}
