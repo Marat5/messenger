@@ -79,6 +79,7 @@ html, body {
     margin-bottom: 20px;
     text-align: center;
     font-size: 20px;
+    font-weight: normal;
 }
 
 .auth-container__textfield {
