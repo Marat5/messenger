@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form class="auth-container__form">
+            <div class="auth-container registration-container">
+                <div>
+                    <p class="auth-container__header-text">Регистрация</p>
+                    <div class="auth-container__textfield">
+                        <label for="first_name">Имя</label>
+                        <input type="text" id="first_name" name="first_name">
+                    </div>
+                    <div class="auth-container__textfield">
+                        <label for="second_name">Фамилия</label>
+                        <input type="text" id="second_name" name="second_name">
+                    </div>
+                    <div class="auth-container__textfield">
+                        <label for="login">Логин</label>
+                        <input type="text" id="login" name="login">
+                    </div>
+                    <div class="auth-container__textfield">
+                        <label for="email">Почта</label>
+                        <input type="text" id="email" name="email">
+                    </div>
+                    <div class="auth-container__textfield">
+                        <label for="password">Пароль</label>
+                        <input type="text" id="password" name="password">
+                    </div>
+                    <div class="auth-container__textfield">
+                        <label for="phone">Телефон</label>
+                        <input type="text" id="phone" name="phone">
+                    </div>
+                </div>
+                <div class="auth-container__buttons">
+                    <input class='primary-button' value="Зарегистрироваться" type="submit"></input>
+                    <a class="help-link" href="url">Войти</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(formData.get('first_name'), formData.get('second_name'), formData.get('login'), formData.get('email'), formData.get('password'), formData.get('phone'))
+    });
+</script>
+
+</html>
