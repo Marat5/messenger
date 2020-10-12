@@ -39,6 +39,8 @@
     flex: 1;
     overflow: auto;
     padding: 0 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-mainspace__footer {
@@ -47,7 +49,6 @@
     display: flex;
     align-items: center;
     margin: 0 20px;
-    padding: 5px 0;
     border-top: 1px solid #eaeaea;
 }
 
@@ -76,19 +77,11 @@
 }
 
 .history__message {
-    display: flex;
     margin-bottom: 10px;
 }
 
 .my-message {
-    justify-content: flex-end;
-}
-
-.his-message {
-    justify-content: flex-start;
-}
-
-.history__my-message-container {
+    align-self: flex-end;
     max-width: 55%;
     background-color: #e4edfd;
     border-radius: 6px;
@@ -96,7 +89,7 @@
     border-bottom-right-radius: 0;
 }
 
-.history__his-message-container {
+.his-message {
     max-width: 55%;
     background-color: #f8f8f8;
     border-radius: 6px;
@@ -104,12 +97,14 @@
     border-bottom-left-radius: 0;
 }
 
+
 .message-text {
     font-family: serif;
 }
 
 .message-info {
     float: right;
+    padding-left: 8px;
     font-size: 9px;
     color: #999;
 }
@@ -178,8 +173,7 @@
 .unread-messages-number {
     display: inline-block;
     height: 20px;
-    padding: 0 8px;
-    padding-top: 3px;
+    padding: 3px 8px 0;
     border-radius: 10px;
     background-color: #3369F3;
     color: #fff;

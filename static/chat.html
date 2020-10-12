@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Чаты</title>
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="chats.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chat.css">
 </head>
 
 <body>
     <div class="wrapper row">
-        <div class="chat-list">
-            <div class="chat-list__option">
+        <ul class="chat-list">
+            <li class="chat-list__option">
                 <div class="user__pic_big"></div>
                 <div class="user__info_stretch">
                     <p class="user__name">Гриша</p>
@@ -22,15 +22,15 @@
                         такое вот</p>
                 </div>
                 <div class="other-chat-info">
-                    <div class='last-message-time'>
+                    <span class='last-message-time'>
                         12:14
-                    </div>
-                    <div class='unread-messages-number'>
+                    </span>
+                    <span class='unread-messages-number'>
                         6
-                    </div>
+                    </span>
                 </div>
-            </div>
-            <div class="chat-list__option">
+            </li>
+            <li class="chat-list__option">
                 <div class="user__pic_big"></div>
                 <div class="user__info_stretch">
                     <p class="user__name">Аня</p>
@@ -40,15 +40,15 @@
                         такое вот</p>
                 </div>
                 <div class="other-chat-info">
-                    <div class='last-message-time'>
+                    <span class='last-message-time'>
                         12:14
-                    </div>
-                    <div class='unread-messages-number'>
+                    </span>
+                    <span class='unread-messages-number'>
                         6123
-                    </div>
+                    </span>
                 </div>
-            </div>
-            <div class="chat-list__option">
+            </li>
+            <li class="chat-list__option">
                 <div class="user__pic_big"></div>
                 <div class="user__info_stretch">
                     <p class="user__name">Полина</p>
@@ -58,15 +58,15 @@
                         такое вот</p>
                 </div>
                 <div class="other-chat-info">
-                    <div class='last-message-time'>
+                    <span class='last-message-time'>
                         12:14
-                    </div>
-                    <div class='unread-messages-number'>
+                    </span>
+                    <span class='unread-messages-number'>
                         12
-                    </div>
+                    </span>
                 </div>
-            </div>
-        </div>
+            </li>
+        </ul>
         <main class="chat-mainspace">
             <div class="chat-mainspace__header">
                 <div class="user__container">
@@ -85,38 +85,30 @@
             <div class="chat-mainspace__history">
                 <p class="history__date">19 июня</p>
                 <div class="history__message his-message">
-                    <div class="history__his-message-container">
-                        <div class="message-info">10:00</div>
-                        <p class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
-                            facilis eveniet
-                            molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
-                            harum distinctio nihil eum ducimus assumenda perspiciatis?</p>
-                    </div>
+                    <span class="message-info">10:00</span>
+                    <span class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
+                        facilis eveniet
+                        molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
+                        harum distinctio nihil eum ducimus assumenda perspiciatis?</span>
                 </div>
                 <div class="history__message my-message">
-                    <div class="history__my-message-container">
-                        <div class="message-info">10:00</div>
-                        <p class="message-text">message</p>
-                    </div>
+                    <span class="message-info">10:00</span>
+                    <span class="message-text">message</span>
                 </div>
                 <div class="history__message his-message">
-                    <div class="history__his-message-container">
-                        <div class="message-info">10:00</div>
-                        <p class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
-                            facilis eveniet
-                            molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
-                            harum distinctio nihil eum ducimus assumenda perspiciatis?</p>
-                    </div>
+                    <span class="message-info">10:00</span>
+                    <span class="message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Architecto
+                        facilis eveniet
+                        molestiae a autem rerum, animi explicabo suscipit veniam illum deleniti, quae quibusdam
+                        harum distinctio nihil eum ducimus assumenda perspiciatis?</span>
                 </div>
                 <div class="history__message my-message">
-                    <div class="history__my-message-container">
-                        <div class="message-info">Прочитано 10:00</div>
-                        <p class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dolorem
-                            rem similique quidem
-                            suscipit alias sit dicta soluta optio provident impedit, aliquid itaque blanditiis deleniti
-                            earum, id ratione non nobis.</p>
+                    <span class="message-info">Прочитано 10:00</span>
+                    <span class="message-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque dolorem
+                        rem similique quidem
+                        suscipit alias sit dicta soluta optio provident impedit, aliquid itaque blanditiis deleniti
+                        earum, id ratione non nobis.</span>
 
-                    </div>
                 </div>
             </div>
             <form class="chat-mainspace__footer">
@@ -128,7 +120,7 @@
                 <div class="new-message-container">
                     <input name="message" id="message" class="message-input" type="text" placeholder="Сообщение">
                 </div>
-                <input type="submit" value=">" class="send-button">
+                <button type="submit" class="send-button">></button>
             </form>
         </main>
     </div>

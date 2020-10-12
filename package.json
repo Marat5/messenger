@@ -1,0 +1,23 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "Проект первого модуля Яндекс Практикум. Мессенджер",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marat5/mf.messenger.praktikum.yandex.git"
+  },
+  "author": "Marat Mukhutdinov <muhutdinov@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marat5/mf.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/Marat5/mf.messenger.praktikum.yandex#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
