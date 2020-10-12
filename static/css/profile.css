@@ -8,6 +8,7 @@
 .profile-name {
     margin-top: 20px;
     text-align: center;
+    font-weight: normal;
 }
 
 .profile__form {

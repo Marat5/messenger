@@ -9,20 +9,25 @@ time, mark, audio, video {
 	font-size: 100%;
 	vertical-align: baseline;
 }
+
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
 	line-height: 1.2;
 }
+
 ol { 
 	padding-left: 1.4em;
 	list-style: decimal;
 }
+
 ul {
 	padding-left: 1.4em;
 	list-style: square;
 }
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -36,7 +41,15 @@ input {
     box-shadow: none;
 }
 
-textarea:focus, input:focus{
+button {
+    border:none;
+    background:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+textarea:focus, input:focus, button:focus{
     outline: none;
 }
 
