@@ -11,9 +11,7 @@ export const addValidationToForm = (fieldsArray) => {
         document.querySelector(`#${name}`).addEventListener('blur', (e) => {
             console.log(`${name} validation`)
         })
-    })
 
-    fieldsArray.forEach(({ name }) => {
         document.querySelector(`#${name}`).addEventListener('focus', (e) => {
             console.log(`${name} validation`)
         })
