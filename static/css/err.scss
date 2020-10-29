@@ -1,0 +1,16 @@
+.error-info {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.err-info__number {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.err-info__helptext {
+    font-size: 20px;
+}

@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,11 @@
   },
   "homepage": "https://github.com/Marat5/mf.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "@types/node": "^14.14.5",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6"
+  },
+  "devDependencies": {
+    "@types/handlebars": "^4.1.0"
   }
 }

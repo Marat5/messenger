@@ -1,34 +1,40 @@
 .profile-picture {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    background-color: seagreen;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background-color: seagreen;
 }
 
 .profile-name {
-    margin-top: 20px;
-    text-align: center;
-    font-weight: normal;
+  margin-top: 20px;
+  text-align: center;
+  font-weight: normal;
 }
 
 .profile__form {
-    margin-top: 40px;
-    width: 600px;
-    text-align: center;
+  margin-top: 40px;
+  width: 600px;
+  text-align: center;
+}
+
+.profile-button-container {
+  margin-top: 40px;
 }
 
 .profile__textfield {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #eaeaea;
-    padding: 5px 0;
-    margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eaeaea;
+  padding: 5px 0;
+  margin: 5px 0;
 }
 
 .profile__textfield input {
-    text-align: right;
+  text-align: right;
 }
 
 .profile__textfield:last-of-type {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
+
+/*# sourceMappingURL=profile.css.map */
