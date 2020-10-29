@@ -1,0 +1,161 @@
+/* сброс стилей браузера */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1.2;
+}
+
+ol { 
+	padding-left: 1.4em;
+	list-style: decimal;
+}
+
+ul {
+	padding-left: 1.4em;
+	list-style: square;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+} 
+
+input {
+    border:none;
+    background:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+button {
+    border:none;
+    background:none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+textarea:focus, input:focus, button:focus{
+    outline: none;
+}
+
+input[type=button]:hover {
+    cursor: pointer;
+}
+
+/* конец кода сброса стилей браузера */
+
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-container {
+    box-sizing: border-box;
+    width: 340px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-container__header-text {
+    margin-top: 70px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.auth-container__textfield {
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+    margin-bottom: 32px;
+}
+
+.auth-container__textfield label{
+    color: #999;
+    font-size: 11px;
+}
+
+.auth-container__textfield input {
+    margin-top: 5px;
+    border: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #3369F3;
+}
+
+.auth-container__form {
+    margin-top: 40px
+}
+
+.primary-button {
+    background-color: #3369F3;
+    border-radius: 8px;
+    margin: 0 30px;
+    padding: 12px;
+    width: 280px;
+    color: #fff;
+    font-size: 13px;
+}
+.primary-button:hover {
+    cursor: pointer;    
+}
+
+.help-link {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.auth-container__buttons {
+    margin-bottom: 20px;
+}
+
+.more-button {
+    padding: 0 12px;
+    margin-right: 10px;
+}
+
+.more-button:hover {
+    cursor: pointer;
+}
+
+.more-button__circle {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin-bottom: 3px;
+    background-color: #1e1e1e;
+}

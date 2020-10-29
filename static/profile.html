@@ -9,57 +9,9 @@
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
-<body>
-    <main class="wrapper">
-        <div class="profile-info">
-            <input id="avatar" type="button" class="profile-picture">
-            <h1 class="profile-name">Арина</h1>
-        </div>
+<body></body>
 
-        <form class="profile__form">
-            <div class="profile__textfield">
-                <label for="first_name">Имя</label>
-                <input type="text" id="first_name" placeholder="Арина" name="first_name">
-            </div>
-            <div class="profile__textfield">
-                <label for="second_name">Фамилия</label>
-                <input type="text" id="second_name" placeholder="Иванова" name="second_name">
-            </div>
-            <div class="profile__textfield">
-                <label for="display_name">Отображаемое имя</label>
-                <input type="text" id="display_name" placeholder="Арина" name="display_name">
-            </div>
-            <div class="profile__textfield">
-                <label for="login">Логин</label>
-                <input type="text" id="login" placeholder="arina" name="login">
-            </div>
-            <div class="profile__textfield">
-                <label for="email">Почта</label>
-                <input type="text" id="email" placeholder="example@yandex.ru" name="email">
-            </div>
-            <div class="profile__textfield">
-                <label for="phone">Телефон</label>
-                <input type="text" id="phone" placeholder="+7 925 111 22 33" name="phone">
-            </div>
-            <div class="profile__textfield">
-                <label for="oldPassword">Старый пароль</label>
-                <input type="text" id="oldPassword" placeholder="Старый пароль" name="oldPassword">
-            </div>
-            <div class="profile__textfield">
-                <label for="newPassword">Новый пароль</label>
-                <input type="text" id="newPassword" placeholder="Новый пароль" name="newPassword">
-            </div>
-            <button class='primary-button' type="submit">Сохранить</button>
-        </form>
-    </main>
-</body>
-
-<script>
-    document.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        console.log(formData.get('first_name'), formData.get('second_name'), formData.get('display_name'), formData.get('login'), formData.get('email'), formData.get('phone'), formData.get('oldPassword'), formData.get('newPassword'))
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="js/pages/profile.js" type="module"></script>
 
 </html>

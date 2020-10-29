@@ -10,35 +10,10 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <form class="auth-container__form">
-            <div class="auth-container login-container">
-                <div>
-                    <h1 class="auth-container__header-text">Вход</h1>
-                    <div class="auth-container__textfield">
-                        <label for="login">Логин</label>
-                        <input type="text" id="login" name="login">
-                    </div>
-                    <div class="auth-container__textfield">
-                        <label for="password">Пароль</label>
-                        <input type="text" id="password" name="password">
-                    </div>
-                </div>
-                <div class="auth-container__buttons">
-                    <button class='primary-button' type="submit">Авторизоваться</button>
-                    <a class="help-link" href="url">Нет аккаунта?</a>
-                </div>
-            </div>
-        </form>
-    </div>
+    <div class="wrapper"></div>
 </body>
 
-<script>
-    document.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        console.log(formData.get('login'), formData.get('password'))
-    });
-</script>
+<script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+<script src="js/pages/login.js" type="module"></script>
 
 </html>
