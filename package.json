@@ -6,7 +6,11 @@
   "scripts": {
     "start": "node app",
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w"
+  },
+  "watch": {
+    "build": "src/"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,7 @@
     "handlebars": "^4.7.6"
   },
   "devDependencies": {
-    "@types/handlebars": "^4.1.0"
+    "@types/handlebars": "^4.1.0",
+    "npm-watch": "^0.7.0"
   }
 }
