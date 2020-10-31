@@ -1,19 +1,29 @@
-export const addListenerToForm = (callback) => {
-    document.querySelector('form').addEventListener('submit', (e) => {
+export const addListenerToForm = (formQuerySelector, formFields) => {
+    document.querySelector(`${formQuerySelector}`).addEventListener('submit', (e) => {
+        const formData = new FormData(document.querySelector(`${formQuerySelector}`));
         e.preventDefault();
-        const formData = new FormData(e.target);
-        callback(formData);
+        for (let [name, value] of formData) {
+            console.log(`Name: ${name}, Value: ${value}`);
+        }
+        return validateForm(formData, formFields);
     });
-}
-
-export const addValidationToForm = (fieldsArray) => {
-    fieldsArray.forEach(({ name }) => {
-        document.querySelector(`#${name}`).addEventListener('blur', (e) => {
-            console.log(`${name} validation`)
-        })
-
-        document.querySelector(`#${name}`).addEventListener('focus', (e) => {
-            console.log(`${name} validation`)
-        })
-    })
-}
+    formFields.forEach((field) => {
+        console.log(field);
+        document.querySelector(`#${field.name}`).addEventListener('blur', () => {
+            const formData = new FormData(document.querySelector(`${formQuerySelector}`));
+            validateForm(formData, formFields);
+        });
+        document.querySelector(`#${field.name}`).addEventListener('focus', () => {
+            const formData = new FormData(document.querySelector(`${formQuerySelector}`));
+            validateForm(formData, formFields);
+        });
+    });
+};
+const validateForm = (formData, formFields) => {
+    formFields.forEach(field => {
+        let value = formData.get(`${field.name}`);
+        let validationRule = new RegExp(field.validationRule);
+        console.log(field.name, validationRule.test(value));
+        return validationRule.test(value);
+    });
+};

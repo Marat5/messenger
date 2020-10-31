@@ -1,7 +1,7 @@
 import { EventBus } from './event-bus.js';
 // Я совершенно не уверен, что понимаю как правильно использовать блок, поэтому использую его только в профиле и чате. После замечаний на ревью добавлю везде
 export class Block {
-    constructor(tagName = "div", props = {}, wrapperClass = null) {
+    constructor(tagName = "div", props = {}, wrapperClassList = []) {
         this._element = null;
         this._meta = null;
         this.setProps = nextProps => {
@@ -14,7 +14,7 @@ export class Block {
         this._meta = {
             tagName,
             props,
-            wrapperClass,
+            wrapperClassList,
         };
         this.props = this._makePropsProxy(props);
         this.eventBus = () => eventBus;
@@ -28,10 +28,12 @@ export class Block {
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
     _createResources() {
-        const { tagName, wrapperClass } = this._meta;
+        const { tagName, wrapperClassList } = this._meta;
         this._element = this._createDocumentElement(tagName);
-        if (wrapperClass) {
-            this._element.classList.add(wrapperClass);
+        if (wrapperClassList.length) {
+            wrapperClassList.forEach(className => {
+                this._element.classList.add(className);
+            });
         }
     }
     init() {
