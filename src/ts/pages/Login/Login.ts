@@ -1,4 +1,3 @@
-import createAuthForm from '../../components/AuthForm/AuthForm.js';
 import { addListenerToForm } from '../../utils.js';
 import Button from '../../components/Button/Button.js';
 import { Block } from '../../Block.js';
