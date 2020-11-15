@@ -3,9 +3,10 @@ import { Block } from '../../Block.js';
 import ProfileForm from '../../components/ProfileForm/ProfileForm.js';
 import profileTemplate from './profileTemplate.js';
 import { fieldsArray, profileData } from './profileData.js';
+import profileApi from '../../api/profile.js';
 
 
-class Profile extends Block {
+export default class Profile extends Block {
     profileForm: any;
     constructor(props) {
         super("main", {
@@ -13,23 +14,20 @@ class Profile extends Block {
         }, ["wrapper"]);
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
+
+
+    onSubmit(data) {
+        profileApi.changeProfile(data).then((response: any) => {
+            console.log(response.status)
+        })
+    }
 
     render() {
+        setTimeout(() => {
+            addListenerToForm('#profile-form', fieldsArray, this.onSubmit);
+        }, 50)
         let compiledBodyTemplate = profileTemplate({ profileData, profileForm: this.props.profileForm });
         return compiledBodyTemplate;
     }
 }
-
-function render(query, block) {
-    const root = document.querySelector(query);
-    root.appendChild(block.getContent());
-
-    addListenerToForm('#profile-form', fieldsArray);
-
-    return root;
-}
-
-const profile = new Profile({});
-
-render("body", profile);

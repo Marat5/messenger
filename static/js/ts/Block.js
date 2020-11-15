@@ -1,9 +1,8 @@
 import { EventBus } from './event-bus.js';
-// Я совершенно не уверен, что понимаю как правильно использовать блок, поэтому использую его только в профиле и чате. После замечаний на ревью добавлю везде
 export class Block {
     constructor(tagName = "div", props = {}, wrapperClassList = []) {
-        this._element = null;
-        this._meta = null;
+        this.element = null;
+        this.meta = null;
         this.setProps = nextProps => {
             if (!nextProps) {
                 return;
@@ -11,45 +10,45 @@ export class Block {
             Object.assign(this.props, nextProps);
         };
         const eventBus = new EventBus();
-        this._meta = {
+        this.meta = {
             tagName,
             props,
             wrapperClassList,
         };
-        this.props = this._makePropsProxy(props);
-        this.eventBus = () => eventBus;
-        this._registerEvents(eventBus);
+        this.props = this.makePropsProxy(props);
+        this.eventBus = eventBus;
+        this.registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT);
     }
-    _registerEvents(eventBus) {
+    registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
-    _createResources() {
-        const { tagName, wrapperClassList } = this._meta;
-        this._element = this._createDocumentElement(tagName);
+    createResources() {
+        const { tagName, wrapperClassList } = this.meta;
+        this.element = this.createDocumentElement(tagName);
         if (wrapperClassList.length) {
             wrapperClassList.forEach(className => {
-                this._element.classList.add(className);
+                this.element.classList.add(className);
             });
         }
     }
     init() {
-        const eventBus = this.eventBus();
-        this._createResources();
+        const eventBus = this.eventBus;
+        this.createResources();
         eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
     _componentDidMount() {
-        const eventBus = this.eventBus();
-        this.componentDidMount();
+        const eventBus = this.eventBus;
+        if (this.componentDidMount) {
+            this.componentDidMount();
+        }
         eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
-    // Может переопределять пользователь, необязательно трогать
-    componentDidMount() { }
     _componentDidUpdate(oldProps, newProps) {
-        const eventBus = this.eventBus();
+        const eventBus = this.eventBus;
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
             eventBus.emit(Block.EVENTS.FLOW_RENDER);
@@ -59,26 +58,18 @@ export class Block {
     componentDidUpdate(oldProps, newProps) {
         return true;
     }
-    get element() {
-        return this._element;
-    }
     _render() {
         const block = this.render();
-        // Этот небезопасный метод для упрощения логики
-        // Используйте шаблонизатор из npm или напишите свой безопасный
-        // Нужно не в строку компилировать (или делать это правильно),
-        // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-        this._element.innerHTML = block;
+        // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
+        this.element.innerHTML = block;
     }
-    // Может переопределять пользователь, необязательно трогать
-    render() { }
     getContent() {
         return this.element;
     }
-    _makePropsProxy(props) {
+    makePropsProxy(props) {
         const handler = {
             set: (target, prop, value) => {
-                let eventBus = this.eventBus();
+                let eventBus = this.eventBus;
                 target[prop] = value;
                 eventBus.emit(Block.EVENTS.FLOW_CDU);
                 return true;
@@ -90,15 +81,18 @@ export class Block {
         const propsProxy = new Proxy(props, handler);
         return propsProxy;
     }
-    _createDocumentElement(tagName) {
+    createDocumentElement(tagName) {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
         return document.createElement(tagName);
     }
     show() {
-        this._element.style.display = 'block';
+        this.element.style.display = 'block';
     }
     hide() {
-        this._element.style.display = 'none';
+        this.element.style.display = 'none';
+    }
+    remove() {
+        this.element.remove();
     }
 }
 Block.EVENTS = {

@@ -3,6 +3,10 @@
   height: 130px;
   border-radius: 50%;
   background-color: seagreen;
+  display: inline-block;
+}
+.profile-picture:hover {
+  cursor: pointer;
 }
 
 .profile-name {

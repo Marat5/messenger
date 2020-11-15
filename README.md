@@ -9,8 +9,8 @@ https://naughty-saha-b231df.netlify.app/
 Макеты https://www.figma.com/file/w7dws8hp8JghA6RPqOXwPZ/Chat?node-id=0%3A1
 
 # Доступные страницы
-* /error.html - ошибка
-* /chat.html - чат
-* /profile.html - настройки (просмотр) профиля
-* /login.html - вход
-* /registration.html - регистрация
+* /error - ошибка
+* /chat - чат
+* /profile - настройки (просмотр) профиля
+* /login - вход
+* /registration - регистрация

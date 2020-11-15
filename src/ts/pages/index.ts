@@ -1,2 +1,3 @@
-const template = Handlebars.compile("Name: {{name}}");
-console.log(template({ name: "Nils" }));
+import router from '../Router.js';
+//init router
+router;
