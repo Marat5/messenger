@@ -4,4 +4,6 @@ export default Handlebars.compile(`
             <p class="err-info__helptext">{{this.errorData.errorText}}</p>
         </div>
         <a class="help-link" href="url">{{this.errorData.backText}}</a>
+
+        <link rel="stylesheet" href="css/err.css">
 `);

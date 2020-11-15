@@ -3,7 +3,8 @@ import Button from '../../components/Button/Button.js';
 import { Block } from '../../Block.js';
 import AuthForm from '../../components/AuthForm/AuthForm.js';
 import { formFields } from './loginData.js';
-class Login extends Block {
+import authApi from '../../api/auth.js';
+export default class Login extends Block {
     constructor(props) {
         // Создаем враппер дом-элемент button
         super("div", {
@@ -12,21 +13,21 @@ class Login extends Block {
                 containerClass: 'login-container',
                 headerText: 'Вход',
                 secondaryText: 'Нет аккаунта?',
-                secondaryHref: '/registration.html',
+                secondaryHref: '/registration',
                 button: new Button({ buttonText: 'Авторизоваться', buttonType: 'submit' }).render()
             })
         }, ['wrapper']);
     }
+    onSubmit(data) {
+        authApi.login(data).then((response) => {
+            console.log(response.status);
+        });
+    }
     componentDidMount() { }
     render() {
+        setTimeout(() => {
+            addListenerToForm('.auth-container__form', formFields, this.onSubmit);
+        }, 50);
         return this.props.authForm.render();
     }
 }
-function render(query, block) {
-    const root = document.querySelector(query);
-    root.appendChild(block.getContent());
-    addListenerToForm('.auth-container__form', formFields);
-    return root;
-}
-const login = new Login({});
-render("body", login);

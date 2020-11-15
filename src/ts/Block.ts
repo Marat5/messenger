@@ -138,4 +138,8 @@ export abstract class Block implements Block {
     hide() {
         this.element.style.display = 'none';
     }
+
+    remove() {
+        this.element.remove();
+    }
 }

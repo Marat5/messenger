@@ -13,11 +13,11 @@ export default Handlebars.compile(`
                         <p class="user__online">Был в сети {{this.profile.wasOnlineTime}}</p>
                     </div>
                 </div>
-                <div class="more-button">
+                <a class="more-button" href="/profile">
                     <div class="more-button__circle"></div>
                     <div class="more-button__circle"></div>
                     <div class="more-button__circle"></div>
-                </div>
+                </a>
             </div>
 
             <div class="chat-mainspace__history">
@@ -32,4 +32,6 @@ export default Handlebars.compile(`
                 {{{this.button}}}
             </form>
         </main>
+
+        <link rel="stylesheet" href="css/chat.css">
 `);

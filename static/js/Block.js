@@ -91,6 +91,9 @@ export class Block {
     hide() {
         this.element.style.display = 'none';
     }
+    remove() {
+        this.element.remove();
+    }
 }
 Block.EVENTS = {
     INIT: "init",
