@@ -3,14 +3,7 @@ import Registration from './pages/Registration/Registration.js';
 import Chat from './pages/Chat/Chat.js';
 import ErrorPage from './pages/Error/Error.js';
 import Profile from './pages/Profile/Profile.js';
-function isEqual(lhs, rhs) {
-    return lhs === rhs;
-}
-function render(query, block) {
-    const root = document.querySelector(query);
-    root.appendChild(block.getContent());
-    return root;
-}
+import { render, isEqual } from './helpers.js';
 class Route {
     constructor(pathname, view, props) {
         this._pathname = pathname;
@@ -71,7 +64,9 @@ class Router {
             this._currentRoute.leave();
         }
         this._currentRoute = route;
-        route.render(route, pathname);
+        if (route) {
+            route.render(route, pathname);
+        }
     }
     go(pathname) {
         this.history.pushState({}, "", pathname);
@@ -97,29 +92,3 @@ router
     .use("/profile", Profile)
     .start();
 export default router;
-// export default function initRouter() {
-//     console.log('initialized')
-//     // Необходимо оставить в силу особенностей тренажёра
-//     // history.pushState({}, '', '/');
-//     const router = new Router("body");
-//     router
-//         .use("/", Chat)
-//         .use("/chat", Chat)
-//         .use("/login", Login)
-//         .use("/registration", Registration)
-//         .use("/error", ErrorPage)
-//         .use("/profile", Profile)
-//         .start();
-//     // setTimeout(() => {
-//     //     router.go("/login");
-//     // }, 1000);
-//     // setTimeout(() => {
-//     //     router.go("/registration");
-//     // }, 2000);
-//     // setTimeout(() => {
-//     //     router.go("/error");
-//     // }, 3000);
-//     // setTimeout(() => {
-//     //     router.go("/profile");
-//     // }, 4000);
-// }

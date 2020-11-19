@@ -1,6 +1,6 @@
-import { Block } from "../../Block.js";
-import errorTemplate from "./errorTemplate.js";
-import { ErrorData, errorData } from './errorData.js'
+import { Block } from "../../Block";
+import errorTemplate from "./errorTemplate";
+import { ErrorData, errorData } from './errorData'
 
 
 export default class ErrorBlock extends Block {

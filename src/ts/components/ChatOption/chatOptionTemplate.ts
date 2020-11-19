@@ -1,3 +1,6 @@
+// import Handlebars from 'handlebars';
+
+
 export default Handlebars.compile(`
     <li class="chat-list__option">
         <img class="user__pic_big"></img>

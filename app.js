@@ -28,3 +28,7 @@ app.get('/error', function (req, res) {
 app.get('/chat', function (req, res) {
   res.sendFile(`/static/index.html`, { root: __dirname })
 });
+
+app.get('*', function (req, res) {
+  res.status(404).sendFile(`/static/error.html`, { root: __dirname });
+});

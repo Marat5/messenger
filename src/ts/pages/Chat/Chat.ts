@@ -1,10 +1,10 @@
-import { addListenerToForm } from '../../utils.js';
-import { Block } from '../../Block.js';
-import ChatList from '../../components/ChatList/ChatList.js';
-import ChatHistory from '../../components/ChatHistory/ChatHistory.js';
-import chatTemplate from './chatTemplate.js';
-import { profile, messages, chats } from './chatData.js'
-import Button from '../../components/Button/Button.js';
+import { addListenerToForm } from '../../utils';
+import { Block } from '../../Block';
+import ChatList from '../../components/ChatList/ChatList';
+import ChatHistory from '../../components/ChatHistory/ChatHistory';
+import chatTemplate from './chatTemplate';
+import { profile, messages, chats } from './chatData'
+import Button from '../../components/Button/Button';
 
 
 export default class Chat extends Block {

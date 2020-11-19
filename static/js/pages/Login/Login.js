@@ -3,7 +3,7 @@ import Button from '../../components/Button/Button.js';
 import { Block } from '../../Block.js';
 import AuthForm from '../../components/AuthForm/AuthForm.js';
 import { formFields } from './loginData.js';
-import authApi from '../../api/auth.js';
+import { login } from '../../api/auth.js';
 export default class Login extends Block {
     constructor(props) {
         // Создаем враппер дом-элемент button
@@ -19,8 +19,13 @@ export default class Login extends Block {
         }, ['wrapper']);
     }
     onSubmit(data) {
-        authApi.login(data).then((response) => {
+        login(data).then((response) => {
             console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так");
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так");
         });
     }
     componentDidMount() { }

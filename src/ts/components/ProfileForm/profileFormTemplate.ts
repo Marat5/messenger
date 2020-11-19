@@ -1,3 +1,6 @@
+// import Handlebars from 'handlebars';
+
+
 export default Handlebars.compile(`
 <form id="profile-form" class="profile__form">
     {{#each this.fieldsArray}}

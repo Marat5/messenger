@@ -1,13 +1,13 @@
-const METHODS = {
-    GET: 'GET',
-    PUT: 'PUT',
-    POST: 'POST',
-    DELETE: 'DELETE',
+enum METHODS {
+    GET = 'GET',
+    PUT = 'PUT',
+    POST = 'POST',
+    DELETE = 'DELETE',
 };
 
 
-function queryStringify(data) {
-    let paramsArray = []
+export function queryStringify(data) {
+    const paramsArray = []
 
     for (let [key, value] of Object.entries(data)) {
         value = Array.isArray(value) ? value.join(',') : value;
@@ -35,25 +35,11 @@ export class HTTPTransport {
     };
 
     post = (url, options: RequestOptions = {}) => {
-        if (options.hasFile) {
-            let body = new FormData();
-            Object.keys(options.data).forEach((key: string) => {
-                body.append(key, options.data[key]);
-            })
-            return this.request(url, { data: body, method: METHODS.POST }, options.timeout)
-        }
-        return this.request(url, { data: JSON.stringify(options.data), method: METHODS.POST }, options.timeout)
+        return this.request(url, { data: options.data, method: METHODS.POST }, options.timeout)
     }
 
     put = (url, options: RequestOptions = {}) => {
-        if (options.hasFile) {
-            let body = new FormData();
-            Object.keys(options.data).forEach((key: string) => {
-                body.append(key, options.data[key]);
-            })
-            return this.request(url, { data: body, method: METHODS.PUT }, options.timeout)
-        }
-        return this.request(url, { data: JSON.stringify(options.data), method: METHODS.PUT }, options.timeout)
+        return this.request(url, { data: options.data, method: METHODS.PUT }, options.timeout)
     }
 
     delete = (url, options: RequestOptions = {}) => {

@@ -1,5 +1,5 @@
-import { Block } from '../../Block.js';
-import chatMessageTemplate from './chatMessageTemplate.js';
+import { Block } from '../../Block';
+import chatMessageTemplate from './chatMessageTemplate';
 
 
 export default class ChatMessage extends Block {

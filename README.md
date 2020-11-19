@@ -8,6 +8,15 @@ https://naughty-saha-b231df.netlify.app/
 
 Макеты https://www.figma.com/file/w7dws8hp8JghA6RPqOXwPZ/Chat?node-id=0%3A1
 
+# Сборка
+Необходимо, чтобы при сборке все импорты Handlebars были закомментированы. См. тестирование
+Проект собирается командой npm run build. Команда компилирует ts и scss
+
+# Тестирование
+Для запуска тестов необходимо в папке ts заменить все "// import Handlebars from 'handlebars';" на "import Handlebars from 'handlebars';"
+Потом запустить npm run test
+Надеюсь, что это временное решение
+
 # Доступные страницы
 * /error - ошибка
 * /chat - чат

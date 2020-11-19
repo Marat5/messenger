@@ -1,5 +1,5 @@
-import { Block } from "../../Block.js";
-import authFormTemplate from "./authFormTemplate.js";
+import { Block } from "../../Block";
+import authFormTemplate from "./authFormTemplate";
 
 export default class AuthForm extends Block {
     constructor(props) {

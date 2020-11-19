@@ -1,5 +1,5 @@
-import { Block } from "../../Block.js";
-import chatOptionTemplate from "./chatOptionTemplate.js";
+import { Block } from "../../Block";
+import chatOptionTemplate from "./chatOptionTemplate";
 
 
 export default class ChatOption extends Block {

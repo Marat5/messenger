@@ -3,7 +3,7 @@ import AuthForm from "../../components/AuthForm/AuthForm.js";
 import Button from "../../components/Button/Button.js";
 import { addListenerToForm } from "../../utils.js";
 import { formFields } from './registrationData.js';
-import authApi from '../../api/auth.js';
+import { register } from '../../api/auth.js';
 export default class Registration extends Block {
     constructor(props) {
         // Создаем враппер дом-элемент button
@@ -19,8 +19,13 @@ export default class Registration extends Block {
         }, ['wrapper']);
     }
     onSubmit(data) {
-        authApi.register(data).then((response) => {
+        register(data).then((response) => {
             console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так");
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так");
         });
     }
     componentDidMount() { }

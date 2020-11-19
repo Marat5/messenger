@@ -1,9 +1,9 @@
-import { Block } from "../../Block.js";
-import AuthForm from "../../components/AuthForm/AuthForm.js";
-import Button from "../../components/Button/Button.js";
-import { addListenerToForm } from "../../utils.js";
-import { formFields } from './registrationData.js';
-import authApi from '../../api/auth.js'
+import { Block } from "../../Block";
+import AuthForm from "../../components/AuthForm/AuthForm";
+import Button from "../../components/Button/Button";
+import { addListenerToForm } from "../../utils";
+import { formFields } from './registrationData';
+import { register } from '../../api/auth'
 
 
 export default class Registration extends Block {
@@ -23,8 +23,13 @@ export default class Registration extends Block {
     }
 
     onSubmit(data) {
-        authApi.register(data).then((response: any) => {
-            console.log(response.status)
+        register(data).then((response: any) => {
+            console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так")
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так")
         })
     }
 

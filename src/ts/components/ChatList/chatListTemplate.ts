@@ -1,4 +1,5 @@
-import ChatOption from '../ChatOption/ChatOption.js';
+import ChatOption from '../ChatOption/ChatOption';
+// import Handlebars from 'handlebars';
 
 
 export default (chats) => {

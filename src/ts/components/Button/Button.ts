@@ -1,5 +1,5 @@
-import { Block } from "../../Block.js";
-import buttonTemplate from "./buttonTemplate.js";
+import { Block } from "../../Block";
+import buttonTemplate from "./buttonTemplate";
 
 export default class Button extends Block {
     buttonText: string;

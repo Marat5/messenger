@@ -1,9 +1,9 @@
-import { addListenerToForm } from '../../utils.js'
-import { Block } from '../../Block.js';
-import ProfileForm from '../../components/ProfileForm/ProfileForm.js';
-import profileTemplate from './profileTemplate.js';
-import { fieldsArray, profileData } from './profileData.js';
-import profileApi from '../../api/profile.js';
+import { addListenerToForm } from '../../utils'
+import { Block } from '../../Block';
+import ProfileForm from '../../components/ProfileForm/ProfileForm';
+import profileTemplate from './profileTemplate';
+import { fieldsArray, profileData } from './profileData';
+import { changeProfile } from '../../api/profile';
 
 
 export default class Profile extends Block {
@@ -18,8 +18,13 @@ export default class Profile extends Block {
 
 
     onSubmit(data) {
-        profileApi.changeProfile(data).then((response: any) => {
-            console.log(response.status)
+        changeProfile(data).then((response: any) => {
+            console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так")
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так")
         })
     }
 

@@ -1,3 +1,4 @@
+// import Handlebars from 'handlebars.js';
 export default Handlebars.compile(`
 <div class="profile-info">
     <label for="avatar" id="avaterLabel" class="profile-picture"></label>

@@ -3,7 +3,7 @@ import { Block } from '../../Block.js';
 import ProfileForm from '../../components/ProfileForm/ProfileForm.js';
 import profileTemplate from './profileTemplate.js';
 import { fieldsArray, profileData } from './profileData.js';
-import profileApi from '../../api/profile.js';
+import { changeProfile } from '../../api/profile.js';
 export default class Profile extends Block {
     constructor(props) {
         super("main", {
@@ -12,8 +12,13 @@ export default class Profile extends Block {
     }
     componentDidMount() { }
     onSubmit(data) {
-        profileApi.changeProfile(data).then((response) => {
+        changeProfile(data).then((response) => {
             console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так");
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так");
         });
     }
     render() {

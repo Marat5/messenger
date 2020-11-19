@@ -1,3 +1,4 @@
+// import Handlebars from 'handlebars.js';
 export default Handlebars.compile(`
 <form class="auth-container__form">
     <div class="auth-container {{containerClass}}">

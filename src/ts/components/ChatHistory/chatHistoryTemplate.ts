@@ -1,4 +1,5 @@
-import ChatMessage from '../ChatMessage/ChatMessage.js';
+import ChatMessage from '../ChatMessage/ChatMessage';
+// import Handlebars from 'handlebars';
 
 
 export default (messages) => {

@@ -1,9 +1,9 @@
-import { addListenerToForm } from '../../utils.js';
-import Button from '../../components/Button/Button.js';
-import { Block } from '../../Block.js';
-import AuthForm from '../../components/AuthForm/AuthForm.js';
-import { formFields } from './loginData.js';
-import authApi from '../../api/auth.js'
+import { addListenerToForm } from '../../utils';
+import Button from '../../components/Button/Button';
+import { Block } from '../../Block';
+import AuthForm from '../../components/AuthForm/AuthForm';
+import { formFields } from './loginData';
+import { login } from '../../api/auth'
 
 export default class Login extends Block {
     authForm: any
@@ -22,8 +22,13 @@ export default class Login extends Block {
     }
 
     onSubmit(data) {
-        authApi.login(data).then((response: any) => {
-            console.log(response.status)
+        login(data).then((response: any) => {
+            console.log(response.status);
+            if (response.status !== 200) {
+                alert("Что-то пошло не так")
+            }
+        }).catch(err => {
+            alert("Что-то пошло не так")
         })
     }
 

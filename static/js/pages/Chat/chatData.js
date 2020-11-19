@@ -7,21 +7,21 @@ let profilejson = JSON.stringify({
 let chatsjson = JSON.stringify([{
         name: "Гриша",
         lastMessage: {
-            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение воттакое вот",
+            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот",
             time: "12:14",
         },
         unreadCount: 6
     }, {
         name: "Аня",
         lastMessage: {
-            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение воттакое вот",
+            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот",
             time: "11:26",
         },
         unreadCount: 14
     }, {
         name: "Полина",
         lastMessage: {
-            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение воттакое вот",
+            text: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот",
             time: "11:12",
         },
         unreadCount: 876
@@ -29,7 +29,7 @@ let chatsjson = JSON.stringify([{
 let messagesjson = JSON.stringify([{
         myMessage: false,
         time: "10:00",
-        message: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! asdfasdfsadfasdf сообщение воттакое вот",
+        message: "Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот",
         firstOfDay: true,
         date: "19 июня",
     }, {
