@@ -1,11 +1,13 @@
-const METHODS = {
-    GET: 'GET',
-    PUT: 'PUT',
-    POST: 'POST',
-    DELETE: 'DELETE',
-};
-function queryStringify(data) {
-    let paramsArray = [];
+var METHODS;
+(function (METHODS) {
+    METHODS["GET"] = "GET";
+    METHODS["PUT"] = "PUT";
+    METHODS["POST"] = "POST";
+    METHODS["DELETE"] = "DELETE";
+})(METHODS || (METHODS = {}));
+;
+export function queryStringify(data) {
+    const paramsArray = [];
     for (let [key, value] of Object.entries(data)) {
         value = Array.isArray(value) ? value.join(',') : value;
         paramsArray.push(`${key}=${value}`);
@@ -21,24 +23,10 @@ export class HTTPTransport {
             return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.GET }), options.timeout);
         };
         this.post = (url, options = {}) => {
-            if (options.hasFile) {
-                let body = new FormData();
-                Object.keys(options.data).forEach((key) => {
-                    body.append(key, options.data[key]);
-                });
-                return this.request(url, { data: body, method: METHODS.POST }, options.timeout);
-            }
-            return this.request(url, { data: JSON.stringify(options.data), method: METHODS.POST }, options.timeout);
+            return this.request(url, { data: options.data, method: METHODS.POST }, options.timeout);
         };
         this.put = (url, options = {}) => {
-            if (options.hasFile) {
-                let body = new FormData();
-                Object.keys(options.data).forEach((key) => {
-                    body.append(key, options.data[key]);
-                });
-                return this.request(url, { data: body, method: METHODS.PUT }, options.timeout);
-            }
-            return this.request(url, { data: JSON.stringify(options.data), method: METHODS.PUT }, options.timeout);
+            return this.request(url, { data: options.data, method: METHODS.PUT }, options.timeout);
         };
         this.delete = (url, options = {}) => {
             return this.request(url, { data: JSON.stringify(options.data), method: METHODS.DELETE }, options.timeout);

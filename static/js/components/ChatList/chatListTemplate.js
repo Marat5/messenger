@@ -1,4 +1,5 @@
 import ChatOption from '../ChatOption/ChatOption.js';
+// import Handlebars from 'handlebars.js';
 export default (chats) => {
     Handlebars.registerHelper("printChats", function () {
         let html = '';

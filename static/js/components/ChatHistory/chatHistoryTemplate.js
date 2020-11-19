@@ -1,4 +1,5 @@
 import ChatMessage from '../ChatMessage/ChatMessage.js';
+// import Handlebars from 'handlebars.js';
 export default (messages) => {
     //Куда поместить хелперы, чтобы они регистрировались только один раз, я не понял(
     Handlebars.registerHelper("printMessages", function () {

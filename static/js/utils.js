@@ -2,9 +2,8 @@ export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
     document.querySelector(`${formQuerySelector}`).addEventListener('submit', (e) => {
         const formData = new FormData(document.querySelector(`${formQuerySelector}`));
         e.preventDefault();
-        let dataObj = {};
-        for (let [name, value] of formData) {
-            // console.log(`Name: ${name}, Value: ${value}`)
+        const dataObj = {};
+        for (const [name, value] of formData) {
             dataObj[name] = value;
         }
         onSubmit(dataObj);

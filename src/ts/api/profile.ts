@@ -1,18 +1,23 @@
-import { HTTPTransport } from './HTTPTransport.js';
+// Импорт без расширения  почему-то не работает. Ребята обсуджали в общем чате, решения не нашли
+import { HTTPTransport } from './HTTPTransport';
+import { BASE_URL } from './constants';
 
 const transport = new HTTPTransport();
-const baseUrl = `https://ya-praktikum.tech/api/v2`
 
-export default {
-    changeProfile(data) {
-        return transport.put(`${baseUrl}/user/profile`, { data })
-    },
+enum profileApiMethods {
+    profile = `/user/profile`,
+    changeAvatar = '/user/profile/avatar',
+    changePassword = `/user/password`
+}
 
-    changeAvatar(data) {
-        return transport.put(`${baseUrl}/user/profile/avatar`, { data, hasFile: true })
-    },
+export const changeProfile = (data) => {
+    return transport.put(`${BASE_URL}${profileApiMethods.profile}`, { data: JSON.stringify(data) })
+}
 
-    changePassword(data) {
-        return transport.put(`${baseUrl}/user/password`, { data })
-    }
+export const changeAvatar = (data) => {
+    return transport.put(`${BASE_URL}${profileApiMethods.changeAvatar}`, { data })
+}
+
+export const changePassword = (data) => {
+    return transport.put(`${BASE_URL}${profileApiMethods.changePassword}`, { data: JSON.stringify(data) })
 }

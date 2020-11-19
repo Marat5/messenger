@@ -1,5 +1,5 @@
-import { Block } from '../../Block.js';
-import chatHistoryTemplate from './chatHistoryTemplate.js';
+import { Block } from '../../Block';
+import chatHistoryTemplate from './chatHistoryTemplate';
 
 type Message = {
     time: string

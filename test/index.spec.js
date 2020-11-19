@@ -1,25 +1,71 @@
 import { expect } from "chai";
-import authApi from '../static/js/api/auth'
-import chatApi from '../static/js/api/chat'
-import profileApi from '../static/js/api/profile'
+import { isEqual } from '../src/ts/helpers'
+import router from '../src/ts/Router';
+import Profile from '../src/ts/pages/Profile/Profile';
+import Button from '../src/ts/components/Button/Button';
+import { queryStringify } from '../src/ts/api/HTTPTransport';
+import { getChats } from '../src/ts/api/chat';
+import buttonTemplate from '../src/ts/components/Button/buttonTemplate';
 
 
-describe("Auth api test", () => {
-    it("Auth api is object", () => {
-        expect(typeof authApi).to.equal("object");
+describe("isEqual", () => {
+    it("Returns true when params are equal", () => {
+        expect(isEqual(1, 1)).to.equal(true);
+    });
+
+    it("Returns false when params are not equal", () => {
+        expect(isEqual(1, 2)).to.equal(false);
+    });
+
+    it("Returns false if params have different types", () => {
+        expect(isEqual(1, "1")).to.equal(false);
     });
 });
 
-describe("Chat api test", () => {
-    it("Chat api is object", () => {
-        expect(typeof chatApi).to.equal("object");
+describe("Router", () => {
+    it("Can add new route", () => {
+        const routesCountBefore = router.routes.length;
+        router.use("/anotherRoute", Profile);
+        const routesCountAfter = router.routes.length;
+
+        expect(routesCountBefore + 1).to.equal(routesCountAfter);
+    });
+
+    it("Can get route", () => {
+        let path = "/"
+        expect(router.getRoute(path)._pathname).to.equal(path)
+    })
+});
+
+describe("Block", () => {
+    it("ComponentDidUpdate returns true on new props", () => {
+        const oldProps = {};
+        const newProps = { newProp: true };
+        expect(new Button("text").componentDidUpdate(oldProps, newProps)).to.equal(true);
     });
 });
 
+describe("HTTPTransport", () => {
+    it("queryStringify returns correct string", () => {
+        const queryString = queryStringify({ name: 'value', arrayOfValues: [1, 2], thirdValue: 'value3' });
+        expect(queryString).to.equal('?name=value&arrayOfValues=1,2&thirdValue=value3')
+    })
 
-describe("Profile api test", () => {
-    it("Profile api is object", () => {
-        expect(typeof profileApi).to.equal("object");
-    });
-});
 
+    it("Gets some response", (done) => {
+        getChats().then(response => {
+            if (response.status === 401) {
+                done()
+            } else {
+                done(new Error("Response status is not 401"))
+            }
+        }).catch(err => done(err))
+    })
+})
+
+describe("Templator", () => {
+    it("Returns expected string", () => {
+        expect(buttonTemplate({ buttonText: 'text', buttonType: 'button', buttonStyle: 'buttonClass' }))
+            .to.equal(`<button class="buttonClass" type="button">text</button>`);
+    })
+})

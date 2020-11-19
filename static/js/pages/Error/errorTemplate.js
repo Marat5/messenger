@@ -1,3 +1,4 @@
+// import Handlebars from 'handlebars.js';
 export default Handlebars.compile(`
         <div class="error-info">
             <h1 class="err-info__number">{{this.errorData.status}}</h1>

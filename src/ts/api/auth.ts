@@ -1,18 +1,23 @@
-import { HTTPTransport } from './HTTPTransport.js';
+// Везде импортируется  потому что без указания расширения не работает. Я не знаю почему( В чате практикума ребята пишут, что у них тоже так
+import { HTTPTransport } from './HTTPTransport';
+import { BASE_URL } from './constants';
 
 const transport = new HTTPTransport();
-const baseUrl = `https://ya-praktikum.tech/api/v2`
 
-export default {
-    login(data) {
-        return transport.post(`${baseUrl}/auth/signin`, { data })
-    },
+enum authApiMethods {
+    login = `/auth/signin`,
+    register = '/auth/signup',
+    logout = `/user/password`
+}
 
-    register(data) {
-        return transport.post(`${baseUrl}/auth/signup`, { data })
-    },
+export const login = (data) => {
+    return transport.post(`${BASE_URL}${authApiMethods.login}`, { data: JSON.stringify(data) })
+}
 
-    logout() {
-        return transport.post(`${baseUrl}/auth/logout`, {})
-    }
+export const register = (data) => {
+    return transport.post(`${BASE_URL}${authApiMethods.register}`, { data: JSON.stringify(data) })
+}
+
+export const logout = () => {
+    return transport.post(`${BASE_URL}${authApiMethods.logout}`, {})
 }

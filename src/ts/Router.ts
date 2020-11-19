@@ -1,18 +1,10 @@
-import Login from './pages/Login/Login.js';
-import Registration from './pages/Registration/Registration.js';
-import Chat from './pages/Chat/Chat.js';
-import ErrorPage from './pages/Error/Error.js';
-import Profile from './pages/Profile/Profile.js';
+import Login from './pages/Login/Login';
+import Registration from './pages/Registration/Registration';
+import Chat from './pages/Chat/Chat';
+import ErrorPage from './pages/Error/Error';
+import Profile from './pages/Profile/Profile';
+import { render, isEqual } from './helpers';
 
-function isEqual(lhs, rhs) {
-    return lhs === rhs;
-}
-
-function render(query, block) {
-    const root = document.querySelector(query);
-    root.appendChild(block.getContent());
-    return root;
-}
 
 class Route {
     _pathname: any;
@@ -100,7 +92,9 @@ class Router {
         }
 
         this._currentRoute = route;
-        route.render(route, pathname);
+        if (route) {
+            route.render(route, pathname);
+        }
     }
 
     go(pathname) {

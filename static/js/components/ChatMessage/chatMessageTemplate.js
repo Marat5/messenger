@@ -1,3 +1,4 @@
+// import Handlebars from 'handlebars.js';
 export default Handlebars.compile(`
     {{#if this.firstOfDay}}
         <p class="history__date">{{this.date}}</p>
