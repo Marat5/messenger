@@ -3,7 +3,7 @@ import Button from '../../components/Button/Button';
 import { Block } from '../../Block';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { formFields } from './loginData';
-import { login } from '../../api/auth'
+import { login } from '../../api/auth';
 
 export default class Login extends Block {
     authForm: any
