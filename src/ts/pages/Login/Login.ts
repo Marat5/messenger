@@ -4,6 +4,7 @@ import { Block } from '../../Block';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { formFields } from './loginData';
 import { login } from '../../api/auth';
+import { ApiResponse } from '../../api/HTTPTransport';
 
 export default class Login extends Block {
     authForm: any
@@ -22,7 +23,7 @@ export default class Login extends Block {
     }
 
     onSubmit(data) {
-        login(data).then((response: any) => {
+        login(data).then((response: ApiResponse) => {
             console.log(response.status);
             if (response.status !== 200) {
                 alert("Что-то пошло не так")
@@ -36,6 +37,7 @@ export default class Login extends Block {
     componentDidMount() { }
 
     render() {
+        // Здесь таймаут так как в момент вызова этого метода, формы еще нет в DOM, без таймаута выкинет ошибку. Рекомендации по улучшению приветствуются:)
         setTimeout(() => {
             addListenerToForm('.auth-container__form', formFields, this.onSubmit);
         }, 50)

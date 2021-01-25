@@ -67,6 +67,10 @@ class Router {
         Router.__instance = this;
     }
 
+    init() {
+
+    }
+
     use(pathname, block) {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
@@ -116,14 +120,17 @@ class Router {
 }
 
 let router = new Router("body");
-router
-    .use("/", Login)
-    .use("/chat", Chat)
-    .use("/login", Login)
-    .use("/registration", Registration)
-    .use("/error", ErrorPage)
-    .use("/profile", Profile)
+router.init = () => {
+    router
+        .use("/", Login)
+        .use("/chat", Chat)
+        .use("/login", Login)
+        .use("/registration", Registration)
+        .use("/error", ErrorPage)
+        .use("/profile", Profile)
 
-    .start();
+        .start();
+}
+
 
 export default router;

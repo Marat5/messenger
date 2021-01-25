@@ -1,4 +1,4 @@
-import { HTTPTransport } from './HTTPTransport';
+import { ApiResponse, HTTPTransport } from './HTTPTransport';
 import { BASE_URL } from './constants';
 
 const transport = new HTTPTransport();
@@ -29,20 +29,18 @@ export const getTokenForChat = (data) => {
     return transport.post(`${BASE_URL}${chatApiMethods.chatToken}${data.chatId}`)
 }
 
-export const getChatSocket = async (data) => {
-    try {
+export const getChatSocket = (data) => {
         let token;
-        await getTokenForChat({chatId: 1}).then((response: any) => {
+         return getTokenForChat({chatId: 1}).then((response: ApiResponse) => {
             if (response.status === 200) {
-                response.json().then((data: any) => {
+                response.json().then((data: {token: string}) => {
                     token = data.token;
                 })
             }
+        }).then(() => {
+            const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${data.userId}/${data.chatId}/${data.token}`);
+            return socket;
         })
-        const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${data.userId}/${data.chatId}/${data.token}`);
-        return socket;
-    } catch(e) {
-        console.log(e)
-    }
+
 
 }
