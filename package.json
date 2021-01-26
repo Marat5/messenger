@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "build": "tsc && node buildHelper && sass src/scss:static/css",
+    "build": "tsc && node buildHelper && sass src/scss:static/css && cp -r src/html/. static",
     "test": "./node_modules/.bin/mocha --timeout 10000 -r jsdom-global/register",
     "watch": "tsc -w",
     "lint": "node_modules/.bin/eslint ."
