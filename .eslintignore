@@ -1,0 +1,4 @@
+/dist
+/static
+**/*.min.js
+/node_modules 

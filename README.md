@@ -8,13 +8,23 @@ https://naughty-saha-b231df.netlify.app/
 
 Макеты https://www.figma.com/file/w7dws8hp8JghA6RPqOXwPZ/Chat?node-id=0%3A1
 
+## Heroku
+https://my-application-ypraktikum.herokuapp.com/
+
 # Сборка
 * Необходимо, чтобы при сборке все импорты Handlebars были закомментированы. См. тестирование
 * Проект собирается командой npm run build. Команда компилирует ts и scss
+* Также можно собрать вебпаком в один файл node ./node_modules/.bin/webpack
 
 # Тестирование
 * Для запуска тестов необходимо в папке ts заменить все "// import Handlebars from 'handlebars';" на "import Handlebars from 'handlebars';" (Надеюсь, что это временное решение)
 * Потом запустить npm run test
+
+# Линтер
+* Запускается с помощью npm run lint
+
+# Precommit
+* Перед коммитом запускает линтер
 
 # Доступные страницы
 * /error - ошибка

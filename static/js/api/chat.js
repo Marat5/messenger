@@ -5,6 +5,7 @@ var chatApiMethods;
 (function (chatApiMethods) {
     chatApiMethods["chats"] = "/chats";
     chatApiMethods["users"] = "/chats/users";
+    chatApiMethods["chatToken"] = "/chats/token/";
 })(chatApiMethods || (chatApiMethods = {}));
 export const getChats = () => {
     return transport.get(`${BASE_URL}${chatApiMethods.chats}`);
@@ -17,4 +18,20 @@ export const addUsersToChat = (data) => {
 };
 export const deleteUsersFromChat = (data) => {
     return transport.delete(`${BASE_URL}${chatApiMethods.users}`, { data: JSON.stringify(data) });
+};
+export const getTokenForChat = (data) => {
+    return transport.post(`${BASE_URL}${chatApiMethods.chatToken}${data.chatId}`);
+};
+export const getChatSocket = (data) => {
+    let token;
+    return getTokenForChat({ chatId: 1 }).then((response) => {
+        if (response.status === 200) {
+            response.json().then((data) => {
+                token = data.token;
+            });
+        }
+    }).then(() => {
+        const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${data.userId}/${data.chatId}/${data.token}`);
+        return socket;
+    });
 };

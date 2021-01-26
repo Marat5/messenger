@@ -25,6 +25,11 @@ type RequestOptions = {
     hasFile?: boolean
 }
 
+export type ApiResponse = {
+    status: number
+    json(): Promise<object>
+}
+
 
 export class HTTPTransport {
     get = (url, options: RequestOptions = {}) => {

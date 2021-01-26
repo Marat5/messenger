@@ -4,6 +4,7 @@ import ProfileForm from '../../components/ProfileForm/ProfileForm';
 import profileTemplate from './profileTemplate';
 import { fieldsArray, profileData } from './profileData';
 import { changeProfile } from '../../api/profile';
+import { ApiResponse } from '../../api/HTTPTransport';
 
 
 export default class Profile extends Block {
@@ -18,7 +19,7 @@ export default class Profile extends Block {
 
 
     onSubmit(data) {
-        changeProfile(data).then((response: any) => {
+        changeProfile(data).then((response: ApiResponse) => {
             console.log(response.status);
             if (response.status !== 200) {
                 alert("Что-то пошло не так")

@@ -30,6 +30,7 @@ export default class Login extends Block {
     }
     componentDidMount() { }
     render() {
+        // Здесь таймаут так как в момент вызова этого метода, формы еще нет в DOM, без таймаута выкинет ошибку. Рекомендации по улучшению приветствуются:)
         setTimeout(() => {
             addListenerToForm('.auth-container__form', formFields, this.onSubmit);
         }, 50);

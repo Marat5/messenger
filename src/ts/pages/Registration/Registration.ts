@@ -4,6 +4,7 @@ import Button from "../../components/Button/Button";
 import { addListenerToForm } from "../../utils";
 import { formFields } from './registrationData';
 import { register } from '../../api/auth'
+import { ApiResponse } from "../../api/HTTPTransport";
 
 
 export default class Registration extends Block {
@@ -23,7 +24,7 @@ export default class Registration extends Block {
     }
 
     onSubmit(data) {
-        register(data).then((response: any) => {
+        register(data).then((response: ApiResponse) => {
             console.log(response.status);
             if (response.status !== 200) {
                 alert("Что-то пошло не так")
