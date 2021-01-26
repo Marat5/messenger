@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-export default Handlebars.compile(`
+let chatMessageTemplate = Handlebars.compile(`
     {{#if this.firstOfDay}}
         <p class="history__date">{{this.date}}</p>
     {{/if}}
@@ -16,3 +16,4 @@ export default Handlebars.compile(`
         </div>
     {{/unless}}
 `);
+export { chatMessageTemplate };

@@ -1,16 +1,15 @@
 import { addListenerToForm } from '../../utils.js';
 import { Block } from '../../Block.js';
-import ProfileForm from '../../components/ProfileForm/ProfileForm.js';
-import profileTemplate from './profileTemplate.js';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm.js';
+import { profileTemplate } from './profileTemplate.js';
 import { fieldsArray, profileData } from './profileData.js';
 import { changeProfile } from '../../api/profile.js';
-export default class Profile extends Block {
+export class Profile extends Block {
     constructor(props) {
         super("main", {
             profileForm: new ProfileForm({ fieldsArray }).render()
         }, ["wrapper"]);
     }
-    componentDidMount() { }
     onSubmit(data) {
         changeProfile(data).then((response) => {
             console.log(response.status);

@@ -1,10 +1,18 @@
+import { AuthForm } from './components/AuthForm/AuthForm';
+import { Button } from './components/Button/Button';
+import { ChatHistory } from './components/ChatHistory/ChatHistory';
+import { ChatList } from './components/ChatList/ChatList';
+import { ProfileForm } from './components/ProfileForm/ProfileForm';
 import { EventBus } from './event-bus';
 
 type BlockProps = {
     tagName: string
-    props: {}
     wrapperClassList: string[]
-    [key: string]: any
+    button?: Button
+    chatList?: ChatList
+    chatHistory?: ChatHistory
+    authForm?: AuthForm
+    profileForm?: ProfileForm
 }
 
 export interface Block {
@@ -13,7 +21,7 @@ export interface Block {
 }
 
 
-export abstract class Block implements Block {
+export abstract class Block {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -58,27 +66,24 @@ export abstract class Block implements Block {
     }
 
     init() {
-        const eventBus = this.eventBus;
         this.createResources();
-        eventBus.emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
 
     _componentDidMount() {
-        const eventBus = this.eventBus;
         if (this.componentDidMount) {
             this.componentDidMount();
         }
-        eventBus.emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
 
     // Может переопределять пользователь, необязательно трогать
-    abstract componentDidMount()
+    componentDidMount() {}
 
     _componentDidUpdate(oldProps, newProps) {
-        const eventBus = this.eventBus;
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
-            eventBus.emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
@@ -97,9 +102,8 @@ export abstract class Block implements Block {
     };
 
     _render() {
-        const block = this.render();
         // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
-        this.element.innerHTML = block;
+        this.element.innerHTML = this.render();
     }
 
     // Может переопределять пользователь, необязательно трогать
@@ -121,9 +125,8 @@ export abstract class Block implements Block {
                 throw new Error('Нет доступа')
             }
         }
-        const propsProxy = new Proxy(props, handler);
 
-        return propsProxy;
+        return new Proxy(props, handler);
     }
 
     private createDocumentElement(tagName) {

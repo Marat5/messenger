@@ -1,12 +1,11 @@
 import { addListenerToForm } from '../../utils.js';
-import Button from '../../components/Button/Button.js';
+import { Button } from '../../components/Button/Button.js';
 import { Block } from '../../Block.js';
-import AuthForm from '../../components/AuthForm/AuthForm.js';
+import { AuthForm } from '../../components/AuthForm/AuthForm.js';
 import { formFields } from './loginData.js';
 import { login } from '../../api/auth.js';
-export default class Login extends Block {
+export class Login extends Block {
     constructor(props) {
-        // Создаем враппер дом-элемент button
         super("div", {
             authForm: new AuthForm({
                 formFields,
@@ -28,9 +27,8 @@ export default class Login extends Block {
             alert("Что-то пошло не так");
         });
     }
-    componentDidMount() { }
     render() {
-        // Здесь таймаут так как в момент вызова этого метода, формы еще нет в DOM, без таймаута выкинет ошибку. Рекомендации по улучшению приветствуются:)
+        // Я, к сожалению, так и не понял как сделать лучше. html были раньше только в папке static, сейчас добавил в src
         setTimeout(() => {
             addListenerToForm('.auth-container__form', formFields, this.onSubmit);
         }, 50);

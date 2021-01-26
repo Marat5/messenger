@@ -33,7 +33,8 @@ describe('Router', () => {
 	});
 
 	it('Can get route', () => {
-		const path = '/';
+		const path = '/someTestRoute';
+		router.use(path, Profile);
 		expect(router.getRoute(path)._pathname).to.equal(path);
 	});
 });

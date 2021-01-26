@@ -1,5 +1,4 @@
 import { ApiResponse, HTTPTransport } from './HTTPTransport';
-import { BASE_URL } from './constants';
 
 const transport = new HTTPTransport();
 
@@ -10,23 +9,23 @@ enum chatApiMethods {
 }
 
 export const getChats = () => {
-    return transport.get(`${BASE_URL}${chatApiMethods.chats}`)
+    return transport.get(`${chatApiMethods.chats}`)
 }
 
 export const createChat = (data) => {
-    return transport.post(`${BASE_URL}${chatApiMethods.chats}`, { data: JSON.stringify(data) })
+    return transport.post(`${chatApiMethods.chats}`, { data: JSON.stringify(data) })
 }
 
 export const addUsersToChat = (data) => {
-    return transport.put(`${BASE_URL}${chatApiMethods.users}`, { data: JSON.stringify(data) })
+    return transport.put(`${chatApiMethods.users}`, { data: JSON.stringify(data) })
 }
 
 export const deleteUsersFromChat = (data) => {
-    return transport.delete(`${BASE_URL}${chatApiMethods.users}`, { data: JSON.stringify(data) })
+    return transport.delete(`${chatApiMethods.users}`, { data: JSON.stringify(data) })
 }
 
 export const getTokenForChat = (data) => {
-    return transport.post(`${BASE_URL}${chatApiMethods.chatToken}${data.chatId}`)
+    return transport.post(`${chatApiMethods.chatToken}${data.chatId}`)
 }
 
 export const getChatSocket = (data) => {

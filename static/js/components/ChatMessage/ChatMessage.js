@@ -1,13 +1,11 @@
 import { Block } from '../../Block.js';
-import chatMessageTemplate from './chatMessageTemplate.js';
-export default class ChatMessage extends Block {
+import { chatMessageTemplate } from './chatMessageTemplate.js';
+export class ChatMessage extends Block {
     constructor(props) {
         super("main", props, ["wrapper"]);
-        this.message = props;
+        this.message = props.message;
     }
-    componentDidMount() { }
     render() {
-        let compiledChatOptionTemplate = chatMessageTemplate(this.message);
-        return compiledChatOptionTemplate;
+        return chatMessageTemplate(this.message);
     }
 }

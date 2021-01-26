@@ -1,56 +1,13 @@
-import Login from './pages/Login/Login';
-import Registration from './pages/Registration/Registration';
-import Chat from './pages/Chat/Chat';
-import ErrorPage from './pages/Error/Error';
-import Profile from './pages/Profile/Profile';
+import { Login } from './pages/Login/Login';
+import { Registration } from './pages/Registration/Registration';
+import { Chat } from './pages/Chat/Chat';
+import { ErrorBlock } from './pages/Error/Error';
+import { Profile } from './pages/Profile/Profile';
 import { render, isEqual } from './helpers';
 
-
-class Route {
-    _pathname: any;
-    _blockClass: any;
-    _block: any;
-    _props: any;
-
-    constructor(pathname, view, props) {
-        this._pathname = pathname;
-        this._blockClass = view;
-        this._block = null;
-        this._props = props;
-    }
-
-    navigate(pathname) {
-        if (this.match(pathname)) {
-            this._pathname = pathname;
-            this.render();
-        }
-    }
-
-    leave() {
-        if (this._block) {
-            this._block.remove();
-            this._block = null;
-        }
-    }
-
-    match(pathname) {
-        return isEqual(pathname, this._pathname);
-    }
-
-    render() {
-        if (!this._block) {
-            this._block = new this._blockClass();
-            render(this._props.rootQuery, this._block);
-            return;
-        }
-
-        this._block.show();
-    }
-}
-
 class Router {
-    static __instance: any;
-    routes: any[];
+    static __instance: Router;
+    routes: Route[];
     history: History;
     _currentRoute: any;
     _rootQuery: any;
@@ -97,7 +54,7 @@ class Router {
 
         this._currentRoute = route;
         if (route) {
-            route.render(route, pathname);
+            route.render();
         }
     }
 
@@ -119,6 +76,48 @@ class Router {
     }
 }
 
+class Route {
+    _pathname: any;
+    _blockClass: any;
+    _block: any;
+    _props: any;
+
+    constructor(pathname, view, props) {
+        this._pathname = pathname;
+        this._blockClass = view;
+        this._block = null;
+        this._props = props;
+    }
+
+    navigate(pathname) {
+        if (this.match(pathname)) {
+            this._pathname = pathname;
+            this.render();
+        }
+    }
+
+    leave() {
+        if (this._block) {
+            this._block.remove();
+            this._block = null;
+        }
+    }
+
+    match(pathname) {
+        return isEqual(pathname, this._pathname);
+    }
+
+    render() {
+        if (!this._block) {
+            this._block = new this._blockClass();
+            render(this._props.rootQuery, this._block);
+            return;
+        }
+
+        this._block.show();
+    }
+}
+
 let router = new Router("body");
 router.init = () => {
     router
@@ -126,11 +125,11 @@ router.init = () => {
         .use("/chat", Chat)
         .use("/login", Login)
         .use("/registration", Registration)
-        .use("/error", ErrorPage)
+        .use("/error", ErrorBlock)
         .use("/profile", Profile)
 
         .start();
 }
 
 
-export default router;
+export {router};

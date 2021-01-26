@@ -36,22 +36,21 @@ export class Block {
         }
     }
     init() {
-        const eventBus = this.eventBus;
         this.createResources();
-        eventBus.emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
     _componentDidMount() {
-        const eventBus = this.eventBus;
         if (this.componentDidMount) {
             this.componentDidMount();
         }
-        eventBus.emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
+    // Может переопределять пользователь, необязательно трогать
+    componentDidMount() { }
     _componentDidUpdate(oldProps, newProps) {
-        const eventBus = this.eventBus;
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response) {
-            eventBus.emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
         }
     }
     // Может переопределять пользователь, необязательно трогать
@@ -59,9 +58,8 @@ export class Block {
         return true;
     }
     _render() {
-        const block = this.render();
         // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
-        this.element.innerHTML = block;
+        this.element.innerHTML = this.render();
     }
     getContent() {
         return this.element;
@@ -78,8 +76,7 @@ export class Block {
                 throw new Error('Нет доступа');
             }
         };
-        const propsProxy = new Proxy(props, handler);
-        return propsProxy;
+        return new Proxy(props, handler);
     }
     createDocumentElement(tagName) {
         // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков

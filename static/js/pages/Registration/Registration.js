@@ -1,12 +1,11 @@
 import { Block } from "../../Block.js";
-import AuthForm from "../../components/AuthForm/AuthForm.js";
-import Button from "../../components/Button/Button.js";
+import { AuthForm } from "../../components/AuthForm/AuthForm.js";
+import { Button } from "../../components/Button/Button.js";
 import { addListenerToForm } from "../../utils.js";
 import { formFields } from './registrationData.js';
 import { register } from '../../api/auth.js';
-export default class Registration extends Block {
+export class Registration extends Block {
     constructor(props) {
-        // Создаем враппер дом-элемент button
         super("div", {
             authForm: new AuthForm({
                 formFields,
@@ -28,7 +27,6 @@ export default class Registration extends Block {
             alert("Что-то пошло не так");
         });
     }
-    componentDidMount() { }
     render() {
         setTimeout(() => {
             addListenerToForm('.auth-container__form', formFields, this.onSubmit);

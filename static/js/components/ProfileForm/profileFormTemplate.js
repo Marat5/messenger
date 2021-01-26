@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-export default Handlebars.compile(`
+let profileFormTemplate = Handlebars.compile(`
 <form id="profile-form" class="profile__form">
     {{#each this.fieldsArray}}
     <div class="profile__textfield">
@@ -10,3 +10,4 @@ export default Handlebars.compile(`
     {{{this.button}}}
     </form>
 `);
+export { profileFormTemplate };
