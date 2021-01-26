@@ -1,15 +1,13 @@
 import { Block } from '../../Block';
-import chatListTemplate from './chatListTemplate';
+import {chatListTemplate} from './chatListTemplate';
 
 
-export default class ChatList extends Block {
+export class ChatList extends Block {
     chats: any;
     constructor(props) {
         super("div", props, ["wrapper"]);
         this.chats = props.chats;
     }
-
-    componentDidMount() {}
 
     render() {
         let compiledChatOptionsTemplate = chatListTemplate(this.chats);

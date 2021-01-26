@@ -1,3 +1,4 @@
+import { BASE_URL } from './constants.js';
 var METHODS;
 (function (METHODS) {
     METHODS["GET"] = "GET";
@@ -35,7 +36,7 @@ export class HTTPTransport {
             const { headers, method, data } = options;
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
-                xhr.open(method, url);
+                xhr.open(method, `${BASE_URL}${url}`);
                 xhr.onload = function () {
                     resolve(xhr);
                 };

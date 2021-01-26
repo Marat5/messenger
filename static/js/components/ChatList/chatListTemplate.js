@@ -1,6 +1,6 @@
-import ChatOption from '../ChatOption/ChatOption.js';
+import { ChatOption } from '../ChatOption/ChatOption.js';
 // import Handlebars from 'handlebars.js';
-export default (chats) => {
+let chatListTemplate = (chats) => {
     Handlebars.registerHelper("printChats", function () {
         let html = '';
         chats.forEach(chat => {
@@ -10,3 +10,4 @@ export default (chats) => {
     });
     return Handlebars.compile(`<ul>{{{printChats chats}}}</ul>`);
 };
+export { chatListTemplate };

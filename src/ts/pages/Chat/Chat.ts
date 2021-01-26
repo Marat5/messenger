@@ -1,17 +1,15 @@
-import { addListenerToForm } from '../../utils';
 import { Block } from '../../Block';
-import ChatList from '../../components/ChatList/ChatList';
-import ChatHistory from '../../components/ChatHistory/ChatHistory';
-import chatTemplate from './chatTemplate';
+import {ChatList} from '../../components/ChatList/ChatList';
+import {ChatHistory} from '../../components/ChatHistory/ChatHistory';
+import {chatTemplate} from './chatTemplate';
 import { profile, messages, chats } from './chatData'
-import Button from '../../components/Button/Button';
+import {Button} from '../../components/Button/Button';
 import { getChatSocket } from '../../api/chat';
 
 
 
-export default class Chat extends Block {
+export class Chat extends Block {
     constructor(props) {
-        // Создаем враппер дом-элемент button
         super("div", {
             chatList: new ChatList({ chats: chats }),
             chatHistory: new ChatHistory({ messages: messages }),
@@ -20,6 +18,7 @@ export default class Chat extends Block {
     }
 
     componentDidMount() {
+        console.log('chat')
         getChatSocket({chatId: 1, userId: 1}).then(socket => {
             socket.addEventListener('open', () => {
                 console.log('Соединение установлено');

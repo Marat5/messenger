@@ -1,3 +1,5 @@
+import { BASE_URL } from './constants';
+
 enum METHODS {
     GET = 'GET',
     PUT = 'PUT',
@@ -56,7 +58,8 @@ export class HTTPTransport {
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            xhr.open(method, url);
+
+            xhr.open(method, `${BASE_URL}${url}`);
 
             xhr.onload = function () {
                 resolve(xhr);

@@ -1,5 +1,6 @@
 export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
-    document.querySelector(`${formQuerySelector}`).addEventListener('submit', (e) => {
+    var _a;
+    (_a = document.querySelector(`${formQuerySelector}`)) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', (e) => {
         const formData = new FormData(document.querySelector(`${formQuerySelector}`));
         e.preventDefault();
         const dataObj = {};
@@ -9,11 +10,12 @@ export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
         onSubmit(dataObj);
     });
     formFields.forEach((field) => {
-        document.querySelector(`#${field.name}`).addEventListener('blur', () => {
+        var _a, _b;
+        (_a = document.querySelector(`#${field.name}`)) === null || _a === void 0 ? void 0 : _a.addEventListener('blur', () => {
             const formData = new FormData(document.querySelector(`${formQuerySelector}`));
             validateForm(formData, formFields);
         });
-        document.querySelector(`#${field.name}`).addEventListener('focus', () => {
+        (_b = document.querySelector(`#${field.name}`)) === null || _b === void 0 ? void 0 : _b.addEventListener('focus', () => {
             const formData = new FormData(document.querySelector(`${formQuerySelector}`));
             validateForm(formData, formFields);
         });
@@ -21,8 +23,8 @@ export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
 };
 const validateForm = (formData, formFields) => {
     formFields.forEach(field => {
-        let value = formData.get(`${field.name}`);
-        let validationRule = new RegExp(field.validationRule);
+        const value = formData.get(`${field.name}`);
+        const validationRule = new RegExp(field.validationRule);
         return validationRule.test(value);
     });
     return true;

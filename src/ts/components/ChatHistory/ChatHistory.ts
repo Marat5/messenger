@@ -1,5 +1,5 @@
 import { Block } from '../../Block';
-import chatHistoryTemplate from './chatHistoryTemplate';
+import {chatHistoryTemplate} from './chatHistoryTemplate';
 
 type Message = {
     time: string
@@ -9,14 +9,12 @@ type Message = {
 }
 
 
-export default class ChatHistory extends Block {
+export class ChatHistory extends Block {
     messages: Message[];
     constructor(props) {
         super("main", props, ["wrapper"]);
         this.messages = props.messages;
     }
-
-    componentDidMount() {}
 
     render() {
         return chatHistoryTemplate(this.messages);

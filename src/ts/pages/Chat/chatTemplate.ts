@@ -1,7 +1,7 @@
 // import Handlebars from 'handlebars';
 
 
-export default Handlebars.compile(`
+let chatTemplate = Handlebars.compile(`
 
         <div class="chat-list">
         {{{ this.chatList }}}
@@ -38,3 +38,5 @@ export default Handlebars.compile(`
 
         <link rel="stylesheet" href="css/chat.css">
 `);
+
+export {chatTemplate}

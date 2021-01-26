@@ -1,13 +1,12 @@
 import { Block } from '../../Block.js';
-import ChatList from '../../components/ChatList/ChatList.js';
-import ChatHistory from '../../components/ChatHistory/ChatHistory.js';
-import chatTemplate from './chatTemplate.js';
+import { ChatList } from '../../components/ChatList/ChatList.js';
+import { ChatHistory } from '../../components/ChatHistory/ChatHistory.js';
+import { chatTemplate } from './chatTemplate.js';
 import { profile, messages, chats } from './chatData.js';
-import Button from '../../components/Button/Button.js';
+import { Button } from '../../components/Button/Button.js';
 import { getChatSocket } from '../../api/chat.js';
-export default class Chat extends Block {
+export class Chat extends Block {
     constructor(props) {
-        // Создаем враппер дом-элемент button
         super("div", {
             chatList: new ChatList({ chats: chats }),
             chatHistory: new ChatHistory({ messages: messages }),
@@ -15,6 +14,7 @@ export default class Chat extends Block {
         }, ['wrapper', 'row']);
     }
     componentDidMount() {
+        console.log('chat');
         getChatSocket({ chatId: 1, userId: 1 }).then(socket => {
             socket.addEventListener('open', () => {
                 console.log('Соединение установлено');

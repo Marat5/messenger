@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-export default Handlebars.compile(`
+let authFormTemplate = Handlebars.compile(`
 <form class="auth-container__form">
     <div class="auth-container {{containerClass}}">
         <div>
@@ -21,3 +21,4 @@ export default Handlebars.compile(`
 <link rel="stylesheet" href="css/login.css">
 <link rel="stylesheet" href="css/registration.css">
 `);
+export { authFormTemplate };

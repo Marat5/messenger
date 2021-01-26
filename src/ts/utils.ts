@@ -1,5 +1,5 @@
 export const addListenerToForm = (formQuerySelector: string, formFields: any[], onSubmit: (data?: any) => void) => {
-    document.querySelector(`${formQuerySelector}`).addEventListener('submit', (e) => {
+    document.querySelector(`${formQuerySelector}`)?.addEventListener('submit', (e) => {
         const formData = new FormData(document.querySelector(`${formQuerySelector}`));
 
         e.preventDefault();
@@ -12,11 +12,11 @@ export const addListenerToForm = (formQuerySelector: string, formFields: any[], 
     });
 
     formFields.forEach((field) => {
-        document.querySelector(`#${field.name}`).addEventListener('blur', () => {
+        document.querySelector(`#${field.name}`)?.addEventListener('blur', () => {
             const formData = new FormData(document.querySelector(`${formQuerySelector}`));
             validateForm(formData, formFields);
         });
-        document.querySelector(`#${field.name}`).addEventListener('focus', () => {
+        document.querySelector(`#${field.name}`)?.addEventListener('focus', () => {
             const formData = new FormData(document.querySelector(`${formQuerySelector}`));
             validateForm(formData, formFields);
         });
@@ -25,8 +25,8 @@ export const addListenerToForm = (formQuerySelector: string, formFields: any[], 
 
 const validateForm = (formData, formFields: any[]) => {
     formFields.forEach(field => {
-        let value = formData.get(`${field.name}`);
-        let validationRule = new RegExp(field.validationRule)
+        const value = formData.get(`${field.name}`);
+        const validationRule = new RegExp(field.validationRule)
         return validationRule.test(value)
     })
     return true;

@@ -1,7 +1,7 @@
 import { Block } from "../../Block";
-import buttonTemplate from "./buttonTemplate";
+import {buttonTemplate} from "./buttonTemplate";
 
-export default class Button extends Block {
+export class Button extends Block {
     buttonText: string;
     buttonType: string;
     buttonStyle: string;
@@ -13,8 +13,6 @@ export default class Button extends Block {
         this.buttonType = props.buttonType || 'button';
         this.buttonStyle = props.buttonStyle || 'primary-button'
     }
-
-    componentDidMount() {}
 
     render() {
         return buttonTemplate({ buttonText: this.buttonText, buttonType: this.buttonType, buttonStyle: this.buttonStyle })
