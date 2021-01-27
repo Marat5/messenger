@@ -26,8 +26,8 @@ class Router {
             .use("/chat", Chat)
             .use("/login", Login)
             .use("/registration", Registration)
-            .use("/error", ErrorBlock)
-            .use("/profile", Profile);
+            .use("/profile", Profile)
+            .use("/error", ErrorBlock);
         // На смену роута вызываем перерисовку
         window.onpopstate = (event => {
             this._onRoute(event.currentTarget.location.pathname);
@@ -55,7 +55,7 @@ class Router {
         this.go("/retistration");
     }
     getRoute(pathname) {
-        return this.routes.find(route => route.match(pathname));
+        return this.routes.find(route => route.match(pathname)) || this.routes.find(route => route.match("/error"));
     }
 }
 class Route {
