@@ -1,3 +1,4 @@
+import { queryStringify } from '../utils';
 import { BASE_URL } from './constants';
 
 enum METHODS {
@@ -6,17 +7,6 @@ enum METHODS {
     POST = 'POST',
     DELETE = 'DELETE',
 };
-
-
-export function queryStringify(data) {
-    const paramsArray = []
-
-    for (let [key, value] of Object.entries(data)) {
-        value = Array.isArray(value) ? value.join(',') : value;
-        paramsArray.push(`${key}=${value}`)
-    }
-    return `?${paramsArray.join('&')}`;
-}
 
 type RequestOptions = {
     data?: any

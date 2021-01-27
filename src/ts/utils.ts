@@ -31,3 +31,13 @@ const validateForm = (formData, formFields: any[]) => {
     })
     return true;
 }
+
+export function queryStringify(data) {
+    const paramsArray = []
+
+    for (let [key, value] of Object.entries(data)) {
+        value = Array.isArray(value) ? value.join(',') : value;
+        paramsArray.push(`${key}=${value}`)
+    }
+    return `?${paramsArray.join('&')}`;
+}

@@ -1,3 +1,4 @@
+import { queryStringify } from '../utils.js';
 import { BASE_URL } from './constants.js';
 var METHODS;
 (function (METHODS) {
@@ -7,14 +8,6 @@ var METHODS;
     METHODS["DELETE"] = "DELETE";
 })(METHODS || (METHODS = {}));
 ;
-export function queryStringify(data) {
-    const paramsArray = [];
-    for (let [key, value] of Object.entries(data)) {
-        value = Array.isArray(value) ? value.join(',') : value;
-        paramsArray.push(`${key}=${value}`);
-    }
-    return `?${paramsArray.join('&')}`;
-}
 export class HTTPTransport {
     constructor() {
         this.get = (url, options = {}) => {
