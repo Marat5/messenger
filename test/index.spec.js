@@ -2,11 +2,11 @@
 
 import { expect } from 'chai';
 import { isEqual } from '../src/ts/helpers';
-import router from '../src/ts/Router';
-import Profile from '../src/ts/pages/Profile/Profile';
-import Button from '../src/ts/components/Button/Button';
+import { router } from '../src/ts/Router';
+import { Profile } from '../src/ts/pages/Profile/Profile';
+import { Button } from '../src/ts/components/Button/Button';
 import { getChats } from '../src/ts/api/chat';
-import buttonTemplate from '../src/ts/components/Button/buttonTemplate';
+import { buttonTemplate } from '../src/ts/components/Button/buttonTemplate';
 import { queryStringify } from '../src/ts/utils';
 
 describe('isEqual', () => {
