@@ -1,3 +1,3 @@
 import {router} from '../Router';
 //init router
-router.init();
+router.start();

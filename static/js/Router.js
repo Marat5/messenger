@@ -15,14 +15,19 @@ class Router {
         this._rootQuery = rootQuery;
         Router.__instance = this;
     }
-    init() {
-    }
     use(pathname, block) {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
         this.routes.push(route);
         return this;
     }
     start() {
+        this
+            .use("/", Login)
+            .use("/chat", Chat)
+            .use("/login", Login)
+            .use("/registration", Registration)
+            .use("/error", ErrorBlock)
+            .use("/profile", Profile);
         // На смену роута вызываем перерисовку
         window.onpopstate = (event => {
             this._onRoute(event.currentTarget.location.pathname);
@@ -85,14 +90,4 @@ class Route {
     }
 }
 let router = new Router("body");
-router.init = () => {
-    router
-        .use("/", Login)
-        .use("/chat", Chat)
-        .use("/login", Login)
-        .use("/registration", Registration)
-        .use("/error", ErrorBlock)
-        .use("/profile", Profile)
-        .start();
-};
 export { router };
