@@ -3,9 +3,9 @@ import { HTTPTransport } from './HTTPTransport';
 const transport = new HTTPTransport();
 
 enum authApiMethods {
-    login = `/auth/signin`,
+    login = '/auth/signin',
     register = '/auth/signup',
-    logout = `/user/password`
+    logout = '/user/password'
 }
 
 export const login = (data) => {

@@ -4,9 +4,9 @@ import { HTTPTransport } from './HTTPTransport';
 const transport = new HTTPTransport();
 
 enum profileApiMethods {
-    profile = `/user/profile`,
+    profile = '/user/profile',
     changeAvatar = '/user/profile/avatar',
-    changePassword = `/user/password`
+    changePassword = '/user/password'
 }
 
 export const changeProfile = (data) => {

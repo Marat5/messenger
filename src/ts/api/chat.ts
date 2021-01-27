@@ -3,9 +3,9 @@ import { ApiResponse, HTTPTransport } from './HTTPTransport';
 const transport = new HTTPTransport();
 
 enum chatApiMethods {
-    chats = `/chats`,
+    chats = '/chats',
     users = '/chats/users',
-    chatToken = `/chats/token/`
+    chatToken = '/chats/token/'
 }
 
 export const getChats = () => {
