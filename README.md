@@ -17,7 +17,7 @@ https://my-application-ypraktikum.herokuapp.com/
 * Также можно собрать вебпаком в один файл node ./node_modules/.bin/webpack
 
 # Тестирование
-* Для запуска тестов необходимо в папке ts заменить все "// import Handlebars from 'handlebars';" на "import Handlebars from 'handlebars';" (Я так и не нашел способ, как обойти возникающую ошибку)
+* Для запуска тестов необходимо в папке ts заменить все "// import Handlebars from 'handlebars';" на "import Handlebars from 'handlebars';"
 * Потом запустить npm run test
 
 # Линтер
