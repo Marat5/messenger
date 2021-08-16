@@ -1,7 +1,7 @@
+/* eslint-disable no-console */
 const express = require('express');
 
-// const { PORT } = process.env;
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -12,5 +12,5 @@ app.listen(PORT, () => {
 });
 
 app.get('*', (req, res) => {
-	res.status(404).sendFile('/static/index.html', { root: __dirname });
+	res.status(200).sendFile('/static/index.html', { root: __dirname });
 });
