@@ -1,5 +1,5 @@
 import { Block } from '../../Block';
-import {chatHistoryTemplate} from './chatHistoryTemplate';
+import { chatHistoryTemplate } from './chatHistoryTemplate';
 
 type Message = {
     time: string
@@ -8,15 +8,15 @@ type Message = {
     firstOfDay: boolean
 }
 
-
 export class ChatHistory extends Block {
     messages: Message[];
+
     constructor(props) {
-        super("main", props, ["wrapper"]);
-        this.messages = props.messages;
+      super('main', props, ['wrapper']);
+      this.messages = props.messages;
     }
 
     render() {
-        return chatHistoryTemplate(this.messages);
+      return chatHistoryTemplate(this.messages);
     }
 }

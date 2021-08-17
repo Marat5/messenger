@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let chatMessageTemplate = Handlebars.compile(`
+const chatMessageTemplate = Handlebars.compile(`
     {{#if this.firstOfDay}}
         <p class="history__date">{{this.date}}</p>
     {{/if}}

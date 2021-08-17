@@ -8,14 +8,8 @@ enum authApiMethods {
     logout = '/user/password'
 }
 
-export const login = (data) => {
-    return transport.post(`${authApiMethods.login}`, { data: JSON.stringify(data) })
-}
+export const login = (data) => transport.post(`${authApiMethods.login}`, { data: JSON.stringify(data) });
 
-export const register = (data) => {
-    return transport.post(`${authApiMethods.register}`, { data: JSON.stringify(data) })
-}
+export const register = (data) => transport.post(`${authApiMethods.register}`, { data: JSON.stringify(data) });
 
-export const logout = () => {
-    return transport.post(`${authApiMethods.logout}`, {})
-}
+export const logout = () => transport.post(`${authApiMethods.logout}`, {});

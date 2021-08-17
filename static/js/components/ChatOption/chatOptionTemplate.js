@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let chatOptionTemplate = Handlebars.compile(`
+const chatOptionTemplate = Handlebars.compile(`
     <li class="chat-list__option">
         <img class="user__pic_big"></img>
         <div class="user__info_stretch">

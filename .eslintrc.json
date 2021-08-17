@@ -16,24 +16,40 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-underscore-dangle": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "no-unused-vars": "off",
         "no-tabs": 0,
-        "indent": ["error", "tab"],
+        "no-shadow": "off",
+        "max-len": [
+            "error",
+            {
+                "code": 160
+            }
+        ],
+        "indent": [
+            "error",
+            2
+        ],
         "import/no-unresolved": [
-            2, 
-            { "caseSensitive": false }
-         ],
-         "import/extensions": [
+            2,
+            {
+                "caseSensitive": false
+            }
+        ],
+        "import/extensions": [
             "error",
             "ignorePackages",
             {
-              "js": "never",
-              "jsx": "never",
-              "ts": "never",
-              "tsx": "never"
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
             }
-         ]
+        ]
     },
     "settings": {
         "import/resolver": "webpack"
-      }
+    }
 }

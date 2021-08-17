@@ -1,5 +1,8 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-param-reassign */
 import { queryStringify } from '../utils.js';
 import { BASE_URL } from './constants.js';
+// eslint-disable-next-line no-shadow
 var METHODS;
 (function (METHODS) {
     METHODS["GET"] = "GET";
@@ -7,7 +10,6 @@ var METHODS;
     METHODS["POST"] = "POST";
     METHODS["DELETE"] = "DELETE";
 })(METHODS || (METHODS = {}));
-;
 export class HTTPTransport {
     constructor() {
         this.get = (url, options = {}) => {
@@ -16,21 +18,15 @@ export class HTTPTransport {
             }
             return this.request(url, Object.assign(Object.assign({}, options), { method: METHODS.GET }), options.timeout);
         };
-        this.post = (url, options = {}) => {
-            return this.request(url, { data: options.data, method: METHODS.POST }, options.timeout);
-        };
-        this.put = (url, options = {}) => {
-            return this.request(url, { data: options.data, method: METHODS.PUT }, options.timeout);
-        };
-        this.delete = (url, options = {}) => {
-            return this.request(url, { data: JSON.stringify(options.data), method: METHODS.DELETE }, options.timeout);
-        };
+        this.post = (url, options = {}) => this.request(url, { data: options.data, method: METHODS.POST }, options.timeout);
+        this.put = (url, options = {}) => this.request(url, { data: options.data, method: METHODS.PUT }, options.timeout);
+        this.delete = (url, options = {}) => this.request(url, { data: JSON.stringify(options.data), method: METHODS.DELETE }, options.timeout);
         this.request = (url, options = {}, timeout = 5000) => {
             const { headers, method, data } = options;
             return new Promise((resolve, reject) => {
                 const xhr = new XMLHttpRequest();
                 xhr.open(method, `${BASE_URL}${url}`);
-                xhr.onload = function () {
+                xhr.onload = () => {
                     resolve(xhr);
                 };
                 xhr.timeout = timeout;
@@ -38,7 +34,7 @@ export class HTTPTransport {
                 xhr.onerror = reject;
                 xhr.ontimeout = reject;
                 if (headers) {
-                    for (let [key, value] of Object.entries(headers)) {
+                    for (const [key, value] of Object.entries(headers)) {
                         xhr.setRequestHeader(`${key}`, `${value}`);
                     }
                 }

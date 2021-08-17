@@ -1,10 +1,10 @@
-import { Block } from "../../Block.js";
-import { Button } from "../Button/Button.js";
-import { profileFormTemplate } from "./profileFormTemplate.js";
+import { Block } from '../../Block.js';
+import { Button } from '../Button/Button.js';
+import { profileFormTemplate } from './profileFormTemplate.js';
 export class ProfileForm extends Block {
     constructor(props) {
-        super("div", {
-            button: new Button({ buttonText: 'Сохранить', buttonType: 'submit' }).render()
+        super('div', {
+            button: new Button({ buttonText: 'Сохранить', buttonType: 'submit' }).render(),
         }, []);
         this.fieldsArray = props.fieldsArray;
     }

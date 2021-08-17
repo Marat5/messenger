@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let profileFormTemplate = Handlebars.compile(`
+const profileFormTemplate = Handlebars.compile(`
 <form id="profile-form" class="profile__form">
     {{#each this.fieldsArray}}
     <div class="profile__textfield">

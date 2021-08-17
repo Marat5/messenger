@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let errorTemplate = Handlebars.compile(`
+const errorTemplate = Handlebars.compile(`
         <div class="error-info">
             <h1 class="err-info__number">{{this.errorData.status}}</h1>
             <p class="err-info__helptext">{{this.errorData.errorText}}</p>

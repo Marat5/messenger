@@ -1,7 +1,6 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let chatTemplate = Handlebars.compile(`
+const chatTemplate = Handlebars.compile(`
 
         <div class="chat-list">
         {{{ this.chatList }}}
@@ -39,4 +38,4 @@ let chatTemplate = Handlebars.compile(`
         <link rel="stylesheet" href="css/chat.css">
 `);
 
-export {chatTemplate}
+export { chatTemplate };

@@ -7,15 +7,15 @@ import { Button } from '../../components/Button/Button.js';
 import { getChatSocket } from '../../api/chat.js';
 export class Chat extends Block {
     constructor(props) {
-        super("div", {
-            chatList: new ChatList({ chats: chats }),
-            chatHistory: new ChatHistory({ messages: messages }),
+        super('div', {
+            chatList: new ChatList({ chats }),
+            chatHistory: new ChatHistory({ messages }),
             button: new Button({ buttonText: '>', buttonHref: '/', buttonStyle: 'send-button' }),
         }, ['wrapper', 'row']);
     }
     componentDidMount() {
         console.log('chat');
-        getChatSocket({ chatId: 1, userId: 1 }).then(socket => {
+        getChatSocket({ chatId: 1, userId: 1 }).then((socket) => {
             socket.addEventListener('open', () => {
                 console.log('Соединение установлено');
                 socket.send(JSON.stringify({
@@ -23,7 +23,7 @@ export class Chat extends Block {
                     type: 'message',
                 }));
             });
-            socket.addEventListener('close', event => {
+            socket.addEventListener('close', (event) => {
                 if (event.wasClean) {
                     console.log('Соединение закрыто чисто');
                 }
@@ -32,7 +32,7 @@ export class Chat extends Block {
                 }
                 console.log(`Код: ${event.code} | Причина: ${event.reason}`);
             });
-            socket.addEventListener('message', event => {
+            socket.addEventListener('message', (event) => {
                 console.log('Получены данные', event.data);
             });
             socket.addEventListener('error', (event) => {

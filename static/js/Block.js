@@ -1,9 +1,9 @@
 import { EventBus } from './event-bus.js';
 export class Block {
-    constructor(tagName = "div", props = {}, wrapperClassList = []) {
+    constructor(tagName = 'div', props = {}, wrapperClassList = []) {
         this.element = null;
         this.meta = null;
-        this.setProps = nextProps => {
+        this.setProps = (nextProps) => {
             if (!nextProps) {
                 return;
             }
@@ -30,7 +30,7 @@ export class Block {
         const { tagName, wrapperClassList } = this.meta;
         this.element = this.createDocumentElement(tagName);
         if (wrapperClassList.length) {
-            wrapperClassList.forEach(className => {
+            wrapperClassList.forEach((className) => {
                 this.element.classList.add(className);
             });
         }
@@ -67,14 +67,14 @@ export class Block {
     makePropsProxy(props) {
         const handler = {
             set: (target, prop, value) => {
-                let eventBus = this.eventBus;
+                const { eventBus } = this;
                 target[prop] = value;
                 eventBus.emit(Block.EVENTS.FLOW_CDU);
                 return true;
             },
             deleteProperty: () => {
                 throw new Error('Нет доступа');
-            }
+            },
         };
         return new Proxy(props, handler);
     }
@@ -93,8 +93,8 @@ export class Block {
     }
 }
 Block.EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
 };

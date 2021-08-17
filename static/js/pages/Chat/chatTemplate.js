@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let chatTemplate = Handlebars.compile(`
+const chatTemplate = Handlebars.compile(`
 
         <div class="chat-list">
         {{{ this.chatList }}}

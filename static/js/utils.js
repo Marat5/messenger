@@ -1,3 +1,12 @@
+/* eslint-disable no-restricted-syntax */
+const validateForm = (formData, formFields) => {
+    formFields.forEach((field) => {
+        const value = formData.get(`${field.name}`);
+        const validationRule = new RegExp(field.validationRule);
+        return validationRule.test(value);
+    });
+    return true;
+};
 export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
     var _a;
     (_a = document.querySelector(`${formQuerySelector}`)) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', (e) => {
@@ -21,16 +30,9 @@ export const addListenerToForm = (formQuerySelector, formFields, onSubmit) => {
         });
     });
 };
-const validateForm = (formData, formFields) => {
-    formFields.forEach(field => {
-        const value = formData.get(`${field.name}`);
-        const validationRule = new RegExp(field.validationRule);
-        return validationRule.test(value);
-    });
-    return true;
-};
 export function queryStringify(data) {
     const paramsArray = [];
+    // eslint-disable-next-line prefer-const
     for (let [key, value] of Object.entries(data)) {
         value = Array.isArray(value) ? value.join(',') : value;
         paramsArray.push(`${key}=${value}`);

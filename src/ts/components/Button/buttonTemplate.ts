@@ -1,5 +1,5 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-let buttonTemplate = Handlebars.compile(`<button class="{{buttonStyle}}" type="{{buttonType}}">{{buttonText}}</button>`)
+const buttonTemplate = Handlebars.compile('<button class="{{buttonStyle}}" type="{{buttonType}}">{{buttonText}}</button>');
 
-export {buttonTemplate}
+export { buttonTemplate };

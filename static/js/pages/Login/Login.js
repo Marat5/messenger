@@ -6,25 +6,25 @@ import { formFields } from './loginData.js';
 import { login } from '../../api/auth.js';
 export class Login extends Block {
     constructor(props) {
-        super("div", {
+        super('div', {
             authForm: new AuthForm({
                 formFields,
                 containerClass: 'login-container',
                 headerText: 'Вход',
                 secondaryText: 'Нет аккаунта?',
                 secondaryHref: '/registration',
-                button: new Button({ buttonText: 'Авторизоваться', buttonType: 'submit' }).render()
-            })
+                button: new Button({ buttonText: 'Авторизоваться', buttonType: 'submit' }).render(),
+            }),
         }, ['wrapper']);
     }
     onSubmit(data) {
         login(data).then((response) => {
             console.log(response.status);
             if (response.status !== 200) {
-                alert("Что-то пошло не так");
+                alert('Что-то пошло не так');
             }
-        }).catch(err => {
-            alert("Что-то пошло не так");
+        }).catch((err) => {
+            alert('Что-то пошло не так');
         });
     }
     render() {

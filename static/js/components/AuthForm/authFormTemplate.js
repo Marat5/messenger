@@ -1,5 +1,5 @@
 // import Handlebars from 'handlebars.js';
-let authFormTemplate = Handlebars.compile(`
+const authFormTemplate = Handlebars.compile(`
 <form class="auth-container__form">
     <div class="auth-container {{containerClass}}">
         <div>

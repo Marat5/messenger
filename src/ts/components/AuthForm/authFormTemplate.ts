@@ -1,7 +1,6 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let authFormTemplate = Handlebars.compile(`
+const authFormTemplate = Handlebars.compile(`
 <form class="auth-container__form">
     <div class="auth-container {{containerClass}}">
         <div>
@@ -24,4 +23,4 @@ let authFormTemplate = Handlebars.compile(`
 <link rel="stylesheet" href="css/registration.css">
 `);
 
-export {authFormTemplate}
+export { authFormTemplate };

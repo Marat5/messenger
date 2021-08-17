@@ -1,14 +1,14 @@
-import { ChatMessage } from '../ChatMessage/ChatMessage.js';
 // import Handlebars from 'handlebars.js';
-let chatHistoryTemplate = (messages) => {
-    //Куда поместить хелперы, чтобы они регистрировались только один раз, я не понял(
-    Handlebars.registerHelper("printMessages", function () {
+import { ChatMessage } from '../ChatMessage/ChatMessage.js';
+const chatHistoryTemplate = (messages) => {
+    // Куда поместить хелперы, чтобы они регистрировались только один раз, я не понял(
+    Handlebars.registerHelper('printMessages', () => {
         let html = '';
-        messages.forEach(message => {
+        messages.forEach((message) => {
             html += new ChatMessage({ message }).render();
         });
         return html;
     });
-    return Handlebars.compile(`{{{printMessages messages}}}`);
+    return Handlebars.compile('{{{printMessages messages}}}');
 };
 export { chatHistoryTemplate };

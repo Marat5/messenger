@@ -1,7 +1,6 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let errorTemplate = Handlebars.compile(`
+const errorTemplate = Handlebars.compile(`
         <div class="error-info">
             <h1 class="err-info__number">{{this.errorData.status}}</h1>
             <p class="err-info__helptext">{{this.errorData.errorText}}</p>
@@ -11,4 +10,4 @@ let errorTemplate = Handlebars.compile(`
         <link rel="stylesheet" href="css/err.css">
 `);
 
-export {errorTemplate}
+export { errorTemplate };

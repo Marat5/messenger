@@ -1,17 +1,16 @@
-import {ChatOption} from '../ChatOption/ChatOption';
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
+import { ChatOption } from '../ChatOption/ChatOption';
 
-
-let chatListTemplate = (chats) => {
-    Handlebars.registerHelper("printChats", function () {
-        let html = '';
-        chats.forEach(chat => {
-            html += new ChatOption({ chat }).render();
-        })
-        return html;
+const chatListTemplate = (chats) => {
+  Handlebars.registerHelper('printChats', () => {
+    let html = '';
+    chats.forEach((chat) => {
+      html += new ChatOption({ chat }).render();
     });
+    return html;
+  });
 
-    return Handlebars.compile(`<ul>{{{printChats chats}}}</ul>`)
-}
+  return Handlebars.compile('<ul>{{{printChats chats}}}</ul>');
+};
 
-export {chatListTemplate}
+export { chatListTemplate };
