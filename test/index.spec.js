@@ -1,5 +1,3 @@
-/* eslint no-underscore-dangle: 0 */
-
 import { expect } from 'chai';
 import { isEqual } from '../src/ts/helpers';
 import { router } from '../src/ts/Router';

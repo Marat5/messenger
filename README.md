@@ -2,7 +2,7 @@
 
 
 ## Описание
-Мессенджер, в котором реализован свой event bus и альтернатива fetch через XMLHttpRequest. Использован шаблонизатор handlebars и компонентный подход
+Мессенджер, в котором реализован свой event bus и альтернатива fetch через XMLHttpRequest. Использован шаблонизатор handlebars и компонентный подход. Собрать можно вебпаком, а можно и без него
 
 ## Доступные страницы
 * /error - ошибка
@@ -12,29 +12,22 @@
 * /registration - регистрация
 
 ## Команды
-1. npm run lint - запускает линтер с --fix
+1. npm run start - запускает сервер, раздающий статику
+2. npm run build - собирает проект в dist вебпаком
+3. npm run build:nowebpack - собирает проект в dist без вебпака
+4. npm run lint - запускает линтер с --fix
+5. npm run test - запускает тесты
+6. npm run clean - удаляет папку dist
 
-## Сборка
-* Необходимо, чтобы при сборке все импорты Handlebars были закомментированы. См. тестирование
-* Проект собирается командой npm run build. Команда компилирует ts и scss
-* Также можно собрать вебпаком в один файл node ./node_modules/.bin/webpack
-
-## Тестирование
-* Для запуска тестов необходимо в папке ts заменить все "// import Handlebars from 'handlebars';" на "import Handlebars from 'handlebars';"
-* Потом запустить npm run test
-
-## Линтер
-* Запускается с помощью npm run lint
-
-## Precommit
-* Перед коммитом запускает линтер
+## Прекоммит
+Перед коммитом запускает линтер
 
 ## Макеты
-https://www.figma.com/file/w7dws8hp8JghA6RPqOXwPZ/Chat?node-id=0%3A1
+[Макеты в фигме](https://www.figma.com/file/w7dws8hp8JghA6RPqOXwPZ/Chat?node-id=0%3A1)
 
 ## Посмотреть можно тут
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f5354633-b55f-4899-adcb-100b7fcb2bc2/deploy-status)](https://app.netlify.com/sites/naughty-saha-b231df/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f5354633-b55f-4899-adcb-100b7fcb2bc2/deploy-status)](https://app.netlify.com/sites/naughty-saha-b231df/deploys)  
+[Приложение на Netlify](https://naughty-saha-b231df.netlify.app/)  
 
-https://naughty-saha-b231df.netlify.app/  
-https://my-application-ypraktikum.herokuapp.com/
+[Приложение на Heroku](https://my-application-ypraktikum.herokuapp.com/)

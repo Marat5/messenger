@@ -2,10 +2,10 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './app.js',
+  entry: './src/ts/pages/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'project-name.bundle.js',
+    filename: 'main.js',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
@@ -23,17 +23,6 @@ module.exports = {
           },
         ],
         exclude: /(node_modules)/,
-      },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
       },
       {
         test: /\.handlebars$/,

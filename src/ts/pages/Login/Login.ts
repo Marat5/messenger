@@ -34,7 +34,6 @@ export class Login extends Block {
     }
 
     render() {
-      // Я, к сожалению, так и не понял как сделать лучше. html были раньше только в папке static, сейчас добавил в src
       setTimeout(() => {
         addListenerToForm('.auth-container__form', formFields, this.onSubmit);
       }, 50);
