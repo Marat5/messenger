@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { AuthForm } from './components/AuthForm/AuthForm';
 import { Button } from './components/Button/Button';
 import { ChatHistory } from './components/ChatHistory/ChatHistory';
@@ -15,134 +16,137 @@ type BlockProps = {
     profileForm?: ProfileForm
 }
 
-export interface Block {
+export interface IBlock {
     props: BlockProps
     eventBus: EventBus
 }
 
-
-export abstract class Block {
+export abstract class Block implements IBlock {
     static EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_CDU: "flow:component-did-update",
-        FLOW_RENDER: "flow:render"
+      INIT: 'init',
+      FLOW_CDM: 'flow:component-did-mount',
+      FLOW_CDU: 'flow:component-did-update',
+      FLOW_RENDER: 'flow:render',
     };
 
     element = null;
+
     private meta = null;
 
-    constructor(tagName = "div", props = {}, wrapperClassList: string[] = []) {
-        const eventBus = new EventBus();
-        this.meta = {
-            tagName,
-            props,
-            wrapperClassList,
-        };
+    constructor(tagName = 'div', props = {}, wrapperClassList: string[] = []) {
+      const eventBus = new EventBus();
+      this.meta = {
+        tagName,
+        props,
+        wrapperClassList,
+      };
 
-        this.props = this.makePropsProxy(props);
+      this.props = this.makePropsProxy(props);
 
-        this.eventBus = eventBus;
+      this.eventBus = eventBus;
 
-        this.registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
+      this.registerEvents(eventBus);
+      eventBus.emit(Block.EVENTS.INIT);
     }
 
+    props: BlockProps;
+
+    eventBus: EventBus;
+
     private registerEvents(eventBus) {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+      eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
     private createResources() {
-        const { tagName, wrapperClassList } = this.meta;
-        this.element = this.createDocumentElement(tagName);
-        if (wrapperClassList.length) {
-            wrapperClassList.forEach(className => {
-                this.element.classList.add(className)
-            });
-        }
+      const { tagName, wrapperClassList } = this.meta;
+      this.element = this.createDocumentElement(tagName);
+      if (wrapperClassList.length) {
+        wrapperClassList.forEach((className) => {
+          this.element.classList.add(className);
+        });
+      }
     }
 
     init() {
-        this.createResources();
-        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
+      this.createResources();
+      this.eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
 
     _componentDidMount() {
-        if (this.componentDidMount) {
-            this.componentDidMount();
-        }
-        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+      if (this.componentDidMount) {
+        this.componentDidMount();
+      }
+      this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
 
     // Может переопределять пользователь, необязательно трогать
     componentDidMount() {}
 
     _componentDidUpdate(oldProps, newProps) {
-        const response = this.componentDidUpdate(oldProps, newProps);
-        if (response) {
-            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-        }
+      const response = this.componentDidUpdate(oldProps, newProps);
+      if (response) {
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+      }
     }
 
     // Может переопределять пользователь, необязательно трогать
     componentDidUpdate(oldProps, newProps) {
-        return true;
+      return true;
     }
 
-    setProps = nextProps => {
-        if (!nextProps) {
-            return;
-        }
+    setProps = (nextProps) => {
+      if (!nextProps) {
+        return;
+      }
 
-
-        Object.assign(this.props, nextProps);
+      Object.assign(this.props, nextProps);
     };
 
     _render() {
-        // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
-        this.element.innerHTML = this.render();
+      // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
+      this.element.innerHTML = this.render();
     }
 
     // Может переопределять пользователь, необязательно трогать
     abstract render()
 
     getContent() {
-        return this.element;
+      return this.element;
     }
 
     private makePropsProxy(props) {
-        const handler = {
-            set: (target, prop, value) => {
-                let eventBus = this.eventBus;
-                target[prop] = value;
-                eventBus.emit(Block.EVENTS.FLOW_CDU);
-                return true;
-            },
-            deleteProperty: () => {
-                throw new Error('Нет доступа')
-            }
-        }
+      const handler = {
+        set: (target, prop, value) => {
+          const { eventBus } = this;
+          target[prop] = value;
+          eventBus.emit(Block.EVENTS.FLOW_CDU);
+          return true;
+        },
+        deleteProperty: () => {
+          throw new Error('Нет доступа');
+        },
+      };
 
-        return new Proxy(props, handler);
+      return new Proxy(props, handler);
     }
 
     private createDocumentElement(tagName) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        return document.createElement(tagName);
+      // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
+      return document.createElement(tagName);
     }
 
     show() {
-        this.element.style.display = 'block';
+      this.element.style.display = 'block';
     }
 
     hide() {
-        this.element.style.display = 'none';
+      this.element.style.display = 'none';
     }
 
     remove() {
-        this.element.remove();
+      this.element.remove();
     }
 }

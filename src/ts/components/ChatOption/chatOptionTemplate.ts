@@ -1,7 +1,6 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let chatOptionTemplate = Handlebars.compile(`
+const chatOptionTemplate = Handlebars.compile(`
     <li class="chat-list__option">
         <img class="user__pic_big"></img>
         <div class="user__info_stretch">
@@ -15,4 +14,4 @@ let chatOptionTemplate = Handlebars.compile(`
     </li>
 `);
 
-export {chatOptionTemplate}
+export { chatOptionTemplate };

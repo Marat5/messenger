@@ -5,12 +5,12 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(express.static(`${__dirname}/static`));
+app.use(express.static(`${__dirname}/dist`));
 
 app.listen(PORT, () => {
-	console.log(`Проект запущен на порте ${PORT}`);
+  console.log(`Проект запущен на порте ${PORT}`);
 });
 
 app.get('*', (req, res) => {
-	res.status(200).sendFile('/static/index.html', { root: __dirname });
+  res.status(200).sendFile('/dist/index.html', { root: __dirname });
 });
