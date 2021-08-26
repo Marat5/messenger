@@ -15,9 +15,10 @@
 1. npm run start - запускает сервер, раздающий статику
 2. npm run build - собирает проект в dist вебпаком
 3. npm run build:nowebpack - собирает проект в dist без вебпака
-4. npm run lint - запускает линтер с --fix
-5. npm run test - запускает тесты
-6. npm run clean - удаляет папку dist
+4. npm run watch - собирает проект, потом вебпак следит за обновлением .ts файлов
+5. npm run lint - запускает линтер с --fix
+6. npm run test - запускает тесты
+7. npm run clean - удаляет папку dist
 
 ## Прекоммит
 Перед коммитом запускает линтер

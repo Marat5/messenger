@@ -4,7 +4,7 @@ import { Button } from '../../components/Button/Button';
 import { addListenerToForm } from '../../utils';
 import { formFields } from './registrationData';
 import { register } from '../../api/auth';
-import { ApiResponse } from '../../api/HTTPTransport';
+import { router } from '../../Router';
 
 export class Registration extends Block {
     authForm: any
@@ -22,15 +22,17 @@ export class Registration extends Block {
       }, ['wrapper']);
     }
 
-    onSubmit(data) {
-      register(data).then((response: ApiResponse) => {
-        console.log(response.status);
-        if (response.status !== 200) {
-          alert('Что-то пошло не так');
+    onSubmit = async (data) => {
+      try {
+        const regResponse = await register(data);
+        if (regResponse.status !== 200) {
+          return alert('Что-то пошло не так');
         }
-      }).catch((err) => {
-        alert('Что-то пошло не так');
-      });
+
+        return router.go('/chat');
+      } catch {
+        return alert('Что-то пошло не так');
+      }
     }
 
     render() {

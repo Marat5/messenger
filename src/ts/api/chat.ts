@@ -1,4 +1,4 @@
-import { ApiResponse, HTTPTransport } from './HTTPTransport';
+import { HTTPTransport } from './HTTPTransport';
 
 const transport = new HTTPTransport();
 
@@ -20,11 +20,12 @@ export const getTokenForChat = (data) => transport.post(`${chatApiMethods.chatTo
 
 export const getChatSocket = (data) => {
   let token;
-  return getTokenForChat({ chatId: 1 }).then((response: ApiResponse) => {
+  return getTokenForChat({ chatId: 1 }).then((response) => {
     if (response.status === 200) {
-      response.json().then((data: {token: string}) => {
-        token = data.token;
-      });
+      // TODO: FIX THIS
+      // response.json().then((data: {token: string}) => {
+      //   token = data.token;
+      // });
     }
   }).then(() => {
     const socket = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${data.userId}/${data.chatId}/${data.token}`);
