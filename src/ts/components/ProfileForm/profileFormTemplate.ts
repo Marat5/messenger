@@ -9,7 +9,7 @@ const profileFormTemplate = Handlebars.compile(`
     </div>
     {{/each}}
     {{{this.button}}}
-    </form>
+</form>
 `);
 
 export { profileFormTemplate };

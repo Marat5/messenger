@@ -20,7 +20,7 @@ type RequestOptions = {
     hasFile?: boolean
 }
 
-export class HTTPTransport {
+class HTTPTransport {
     get = (url, options: RequestOptions = {}) => {
       if (options.data) {
         url += queryStringify(options.data);
@@ -52,6 +52,8 @@ export class HTTPTransport {
         xhr.ontimeout = reject;
 
         xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.withCredentials = true;
+        xhr.responseType = 'json';
 
         if (headers) {
           for (const [key, value] of Object.entries(headers)) {
@@ -67,3 +69,5 @@ export class HTTPTransport {
       });
     };
 }
+
+export const transport = new HTTPTransport();

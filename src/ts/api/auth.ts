@@ -1,11 +1,9 @@
-import { HTTPTransport } from './HTTPTransport';
-
-const transport = new HTTPTransport();
+import { transport } from './HTTPTransport';
 
 enum authApiMethods {
     login = '/auth/signin',
     register = '/auth/signup',
-    logout = '/user/password'
+    logout = '/auth/logout'
 }
 
 export const login = (data) => transport.post(`${authApiMethods.login}`, { data: JSON.stringify(data) });

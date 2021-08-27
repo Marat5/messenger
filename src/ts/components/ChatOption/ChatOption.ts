@@ -1,15 +1,23 @@
 import { Block } from '../../Block';
 import { chatOptionTemplate } from './chatOptionTemplate';
 
-export class ChatOption extends Block {
-    chat: any;
+type ChatOptionProps = {
+  chat: any;
+  onChatClick: (chatId: number) => void;
+}
 
-    constructor(props) {
-      super('main', props, ['wrapper']);
-      this.chat = props.chat;
-    }
+export class ChatOption extends Block<ChatOptionProps> {
+  componentDidMount() {
+    const chatId = this.props.chat.id;
+    setTimeout(() => {
+      const chatElement = document.getElementById(chatId);
+      if (chatElement) {
+        chatElement.onclick = () => this.props.onChatClick(chatId);
+      }
+    }, 0);
+  }
 
-    render() {
-      return chatOptionTemplate(this.chat);
-    }
+  render() {
+    return chatOptionTemplate(this.props.chat);
+  }
 }

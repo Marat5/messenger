@@ -1,15 +1,9 @@
 import { Block } from '../../Block';
 import { errorTemplate } from './errorTemplate';
-import { ErrorData, errorData } from './errorData';
+import { errorData } from './errorData';
 
 export class ErrorBlock extends Block {
-    errorData: ErrorData
-
-    constructor(props) {
-      super('div', {}, ['wrapper']);
-    }
-
-    render() {
-      return errorTemplate({ errorData });
-    }
+  render() {
+    return errorTemplate({ errorData });
+  }
 }

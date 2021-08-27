@@ -1,57 +1,97 @@
+import { ChatHeader } from '../../components/ChatHeader/ChatHeader';
 import { Block } from '../../Block';
 import { ChatList } from '../../components/ChatList/ChatList';
 import { ChatHistory } from '../../components/ChatHistory/ChatHistory';
 import { chatTemplate } from './chatTemplate';
-import { profile, messages, chats } from './chatData';
+import { profile, messages } from './chatData';
 import { Button } from '../../components/Button/Button';
-import { getChatSocket } from '../../api/chat';
+import { getChats, getChatSocket } from '../../api/chat';
 
-export class Chat extends Block {
-  constructor(props) {
-    super('div', {
-      chatList: new ChatList({ chats }),
-      chatHistory: new ChatHistory({ messages }),
+type ChatProps = {
+  chats: any[];
+  selectedChatInfo: any;
+  chatHeader: ChatHeader;
+  chatList: ChatList;
+  chatHistory: ChatHistory;
+  button: Button;
+}
+
+export class Chat extends Block<ChatProps> {
+  constructor() {
+    super({
+      selectedChatInfo: null,
+      chats: [],
+      chatList: new ChatList({}),
+      chatHistory: new ChatHistory({ elemId: 'chat-history' }),
+      chatHeader: new ChatHeader({ elemId: 'chat-header' }),
       button: new Button({ buttonText: '>', buttonHref: '/', buttonStyle: 'send-button' }),
-    }, ['wrapper', 'row']);
+    }, 'div', ['wrapper', 'row']);
+  }
+
+  getAllChats() {
+    getChats()
+      .then((response) => {
+        this.setProps({
+          chats: response.response,
+          chatList: new ChatList({
+            chats: response.response,
+            getAllChats: this.getAllChats.bind(this),
+            onChatClick: this.onChatClick.bind(this),
+          }),
+        });
+      });
+  }
+
+  getChatHistory() {
+
+  }
+
+  onChatClick(id) {
+    const { chatHeader, chatHistory } = this.props;
+    const selectedChatInfo = this.props.chats.find((chat) => chat.id === id);
+
+    chatHeader.setProps({ selectedChatInfo });
+    chatHistory.setProps({ messages });
   }
 
   componentDidMount() {
-    console.log('chat');
-    getChatSocket({ chatId: 1, userId: 1 }).then((socket) => {
-      socket.addEventListener('open', () => {
-        console.log('Соединение установлено');
+    this.getAllChats();
+    // getChatSocket({ chatId: 1, userId: 1 }).then((socket) => {
+    //   socket.addEventListener('open', () => {
+    //     console.log('Соединение установлено');
 
-        socket.send(JSON.stringify({
-          content: 'Моё первое сообщение миру!',
-          type: 'message',
-        }));
-      });
+    //     socket.send(JSON.stringify({
+    //       content: 'Моё первое сообщение миру!',
+    //       type: 'message',
+    //     }));
+    //   });
 
-      socket.addEventListener('close', (event) => {
-        if (event.wasClean) {
-          console.log('Соединение закрыто чисто');
-        } else {
-          console.log('Обрыв соединения');
-        }
+    //   socket.addEventListener('close', (event) => {
+    //     if (event.wasClean) {
+    //       console.log('Соединение закрыто чисто');
+    //     } else {
+    //       console.log('Обрыв соединения');
+    //     }
 
-        console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-      });
+    //     console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+    //   });
 
-      socket.addEventListener('message', (event) => {
-        console.log('Получены данные', event.data);
-      });
+    //   socket.addEventListener('message', (event) => {
+    //     console.log('Получены данные', event.data);
+    //   });
 
-      socket.addEventListener('error', (event: any) => {
-        console.log('Ошибка', event.message);
-      });
-    });
+    //   socket.addEventListener('error', (event: any) => {
+    //     console.log('Ошибка', event.message);
+    //   });
+    // });
   }
 
   render() {
     return chatTemplate({
-      profile,
+      selectedChatInfo: this.props.selectedChatInfo,
       chatList: this.props.chatList.render(),
       chatHistory: this.props.chatHistory.render(),
+      chatHeader: this.props.chatHeader.render(),
       button: this.props.button.render(),
     });
   }

@@ -1,16 +1,23 @@
 import Handlebars from 'handlebars';
 import { ChatOption } from '../ChatOption/ChatOption';
 
-const chatListTemplate = (chats) => {
+const chatListTemplate = ({ chats, addButton, onChatClick }) => {
   Handlebars.registerHelper('printChats', () => {
     let html = '';
     chats.forEach((chat) => {
-      html += new ChatOption({ chat }).render();
+      html += new ChatOption({ chat, onChatClick }).render();
     });
     return html;
   });
 
-  return Handlebars.compile('<ul>{{{printChats chats}}}</ul>');
+  Handlebars.registerHelper('mountButton', () => addButton);
+
+  return Handlebars.compile(`
+    <div>
+      <ul>{{{printChats}}}</ul>
+      {{{mountButton}}}
+    </div>
+  `);
 };
 
 export { chatListTemplate };

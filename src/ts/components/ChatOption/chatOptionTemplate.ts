@@ -1,15 +1,15 @@
 import Handlebars from 'handlebars';
 
 const chatOptionTemplate = Handlebars.compile(`
-    <li class="chat-list__option">
+    <li id={{ this.id }} class="chat-list__option">
         <img class="user__pic_big"></img>
         <div class="user__info_stretch">
-            <p class="user__name">{{this.name}}</p>
-            <p class="user__last-message">{{this.lastMessage.text}}</p>
+            <p class="user__name">{{this.title}}</p>
+            <p class="user__last-message">{{this.last_message.text}}</p>
         </div>
         <div class="other-chat-info">
-            <span class='last-message-time'>{{this.lastMessage.time}}</span>
-            <span class='unread-messages-number'>{{this.unreadCount}}</span>
+            <span class='last-message-time'>{{this.last_message.time}}</span>
+            <span class='unread-messages-number'>{{this.unread_count}}</span>
         </div>
     </li>
 `);

@@ -6,26 +6,26 @@ const profilejson = JSON.stringify({
   picture: null,
 });
 const chatsjson = JSON.stringify([{
-  name: 'Гриша',
-  lastMessage: {
+  title: 'Гриша',
+  last_message: {
     text: 'Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот',
     time: '12:14',
   },
-  unreadCount: 6,
+  unread_count: 6,
 }, {
-  name: 'Аня',
-  lastMessage: {
+  title: 'Аня',
+  last_message: {
     text: 'Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот',
     time: '11:26',
   },
-  unreadCount: 14,
+  unread_count: 14,
 }, {
-  name: 'Полина',
-  lastMessage: {
+  title: 'Полина',
+  last_message: {
     text: 'Последнее Lorem ipsum dolor sit amet consectetur adipisicing elit.Labore voluptatibus ab doloremque in facere porro nesciunt maiores, illum quo mollitia numquamiusto corrupti quibusdam aut esse, quasi tempore inventore neque! changedsadfasdf сообщение воттакое вот',
     time: '11:12',
   },
-  unreadCount: 876,
+  unread_count: 876,
 }]);
 
 const messagesjson = JSON.stringify([{

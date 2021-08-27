@@ -1,7 +1,5 @@
 // Импорт без расширения  почему-то не работает. Ребята обсуджали в общем чате, решения не нашли
-import { HTTPTransport } from './HTTPTransport';
-
-const transport = new HTTPTransport();
+import { transport } from './HTTPTransport';
 
 enum profileApiMethods {
     profile = '/user/profile',

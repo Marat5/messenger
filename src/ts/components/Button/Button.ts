@@ -1,22 +1,25 @@
 import { Block } from '../../Block';
 import { buttonTemplate } from './buttonTemplate';
 
-export class Button extends Block {
-    buttonText: string;
+type ButtonProps = {
+  id: string;
+  buttonText: string;
+  buttonType: string;
+  buttonStyle: 'primary-button' | 'danger-button' | 'create-button';
+  onClick?: () => void;
+}
 
-    buttonType: string;
+export class Button extends Block<ButtonProps> {
+  constructor(props) {
+    // Создаем враппер дом-элемент button
+    super(props);
+    this.props.buttonType = this.props.buttonType || 'button';
+    this.props.buttonStyle = this.props.buttonStyle || 'primary-button';
+  }
 
-    buttonStyle: string;
-
-    constructor(props) {
-      // Создаем враппер дом-элемент button
-      super('div', {}, ['wrapper']);
-      this.buttonText = props.buttonText;
-      this.buttonType = props.buttonType || 'button';
-      this.buttonStyle = props.buttonStyle || 'primary-button';
-    }
-
-    render() {
-      return buttonTemplate({ buttonText: this.buttonText, buttonType: this.buttonType, buttonStyle: this.buttonStyle });
-    }
+  render() {
+    return buttonTemplate({
+      id: this.props.id, buttonText: this.props.buttonText, buttonType: this.props.buttonType, buttonStyle: this.props.buttonStyle,
+    });
+  }
 }

@@ -7,6 +7,7 @@ const profileTemplate = Handlebars.compile(`
     <h1 class="profile-name">{{this.profileData.name}}</h1>
 </div>
 {{{this.profileForm}}}
+{{{this.exitButton}}}
 
 <link rel="stylesheet" href="css/profile.css">
 `);

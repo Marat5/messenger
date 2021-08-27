@@ -1,15 +1,13 @@
 import { Block } from '../../Block';
+import { Message } from '../ChatHistory/ChatHistory';
 import { chatMessageTemplate } from './chatMessageTemplate';
 
-export class ChatMessage extends Block {
-    message: string;
+type ChatMessageProps = {
+  message: Message
+}
 
-    constructor(props) {
-      super('main', props, ['wrapper']);
-      this.message = props.message;
-    }
-
-    render() {
-      return chatMessageTemplate(this.message);
-    }
+export class ChatMessage extends Block<ChatMessageProps> {
+  render() {
+    return chatMessageTemplate(this.props.message);
+  }
 }

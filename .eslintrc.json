@@ -21,7 +21,6 @@
         "class-methods-use-this": "off",
         "no-unused-vars": "off",
         "no-alert": "off",
-        "no-tabs": 0,
         "no-shadow": "off",
         "max-len": [
             "error",
