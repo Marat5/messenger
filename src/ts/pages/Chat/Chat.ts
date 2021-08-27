@@ -42,20 +42,7 @@ export class Chat extends Block<ChatProps> {
       });
   }
 
-  getChatHistory() {
-
-  }
-
-  onChatClick(id) {
-    const { chatHeader, chatHistory } = this.props;
-    const selectedChatInfo = this.props.chats.find((chat) => chat.id === id);
-
-    chatHeader.setProps({ selectedChatInfo });
-    chatHistory.setProps({ messages });
-  }
-
-  componentDidMount() {
-    this.getAllChats();
+  getChatHistory(id) {
     // getChatSocket({ chatId: 1, userId: 1 }).then((socket) => {
     //   socket.addEventListener('open', () => {
     //     console.log('Соединение установлено');
@@ -84,6 +71,19 @@ export class Chat extends Block<ChatProps> {
     //     console.log('Ошибка', event.message);
     //   });
     // });
+  }
+
+  onChatClick(id) {
+    const { chatHeader, chatHistory } = this.props;
+    const selectedChatInfo = this.props.chats.find((chat) => chat.id === id);
+
+    chatHeader.setProps({ selectedChatInfo });
+    chatHistory.setProps({ messages });
+    this.getChatHistory(id);
+  }
+
+  componentDidMount() {
+    this.getAllChats();
   }
 
   render() {

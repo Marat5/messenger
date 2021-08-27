@@ -8,8 +8,6 @@ const profileTemplate = Handlebars.compile(`
 </div>
 {{{this.profileForm}}}
 {{{this.exitButton}}}
-
-<link rel="stylesheet" href="css/profile.css">
 `);
 
 export { profileTemplate };

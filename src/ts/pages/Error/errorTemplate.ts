@@ -8,8 +8,6 @@ const errorTemplate = Handlebars.compile(`
             <a class="help-link" href="chat">{{this.errorData.backText}}</a>
         </div>
     </div>
-
-    <link rel="stylesheet" href="css/err.css">
 `);
 
 export { errorTemplate };

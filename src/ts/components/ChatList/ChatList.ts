@@ -30,12 +30,16 @@ export class ChatList extends Block<ChatListProps> {
     }, 0);
   }
 
-  onCreateChat() {
-    createChat({ title: 'Super Chat Title' })
+  onCreateChat(e) {
+    e.preventDefault();
+    const inputElement = document.getElementById('chatname-input') as HTMLInputElement;
+    const inputValue = inputElement.value || 'Super Chat Title';
+
+    createChat({ title: inputValue })
       .then((response) => {
         if (response.status === 200) {
-          alert('Чат успешно создан');
           this.props.getAllChats();
+          alert('Чат успешно создан');
         } else {
           alert('Ошибка при создании чата');
         }
@@ -47,7 +51,7 @@ export class ChatList extends Block<ChatListProps> {
       chats: this.props.chats,
       onChatClick: this.props.onChatClick,
       addButton: new Button({
-        id: 'addButton', buttonText: 'Создать чат', buttonStyle: 'create-button',
+        id: 'addButton', buttonText: 'Создать чат', buttonType: 'submit', buttonStyle: 'create-button',
       }).render(),
     });
 

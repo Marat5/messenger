@@ -23,8 +23,6 @@ const chatTemplate = Handlebars.compile(`
                 {{{this.button}}}
             </form>
         </main>
-
-        <link rel="stylesheet" href="css/chat.css">
 `);
 
 export { chatTemplate };

@@ -5,9 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "build": "npm run clean; webpack; sass src/scss:dist/css; cp src/html/index.html dist/index.html;",
-    "build:nowebpack": "npm run clean; tsc && node buildHelper && sass src/scss:dist/css && cp src/html/indexNoWebPack.html dist/index.html",
-    "watch": "npm run clean; sass src/scss:dist/css; cp src/html/index.html dist/index.html; webpack --watch;",
+    "build": "npm run clean; webpack; sass src/scss/main.scss:dist/css/main.css; cp src/html/index.html dist/index.html;",
+    "build:nowebpack": "npm run clean; tsc && node buildHelper && sass src/scss/main.scss:dist/css/main.css; && cp src/html/indexNoWebPack.html dist/index.html",
+    "watch": "npm run clean; sass src/scss/main.scss:dist/css/main.css; cp src/html/index.html dist/index.html; webpack --watch;",
     "test": "mocha --timeout 10000 -r jsdom-global/register",
     "lint": "npx eslint --ext .ts --fix .",
     "clean": "rimraf dist"

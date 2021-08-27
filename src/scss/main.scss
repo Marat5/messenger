@@ -188,3 +188,9 @@ html, body {
     margin-bottom: 3px;
     background-color: #1e1e1e;
 }
+
+@import "./chat.scss";
+@import "./err.scss";
+@import "./login.scss";
+@import "./profile.scss";
+@import "./registration.scss";

@@ -15,7 +15,10 @@ const chatListTemplate = ({ chats, addButton, onChatClick }) => {
   return Handlebars.compile(`
     <div>
       <ul>{{{printChats}}}</ul>
-      {{{mountButton}}}
+      <form>
+        <input id="chatname-input" placeholder="Введите название нового чата" class="chatname-input" />
+        {{{mountButton}}}
+      </form>
     </div>
   `);
 };
