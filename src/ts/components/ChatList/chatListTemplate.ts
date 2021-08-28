@@ -1,11 +1,17 @@
 import Handlebars from 'handlebars';
+import { formatTime } from '../../utils';
 import { ChatOption } from '../ChatOption/ChatOption';
 
 const chatListTemplate = ({ chats, addButton, onChatClick }) => {
   Handlebars.registerHelper('printChats', () => {
     let html = '';
     chats.forEach((chat) => {
-      html += new ChatOption({ chat, onChatClick }).render();
+      const formattedChat = chat;
+      const lastMessage = formattedChat.last_message;
+      if (lastMessage) {
+        formattedChat.last_message.local_time = formatTime(lastMessage.time);
+      }
+      html += new ChatOption({ chat: formattedChat, onChatClick }).render();
     });
     return html;
   });

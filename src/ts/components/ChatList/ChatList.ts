@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { createChat, getChats } from '../../api/chat';
+import { addUsersToChat, createChat, getChats } from '../../api/chat';
 import { Block } from '../../Block';
 import { Button } from '../Button/Button';
 import { chatListTemplate } from './chatListTemplate';
@@ -30,24 +30,30 @@ export class ChatList extends Block<ChatListProps> {
     }, 0);
   }
 
-  onCreateChat(e) {
-    e.preventDefault();
-    const inputElement = document.getElementById('chatname-input') as HTMLInputElement;
-    const inputValue = inputElement.value || 'Super Chat Title';
+  async onCreateChat(e) {
+    try {
+      e.preventDefault();
+      const inputElement = document.getElementById('chatname-input') as HTMLInputElement;
+      const inputValue = inputElement.value || 'Super Chat Title';
 
-    createChat({ title: inputValue })
-      .then((response) => {
-        if (response.status === 200) {
-          this.props.getAllChats();
-          alert('Чат успешно создан');
-        } else {
-          alert('Ошибка при создании чата');
-        }
-      });
+      const createChatResponse = await createChat({ title: inputValue });
+      if (createChatResponse.status !== 200) {
+        throw new Error(`Код ответа ${createChatResponse.status}`);
+      }
+      const createdChatId = createChatResponse.response.id;
+
+      // Чатик всегда создается для 3 юзеров
+      addUsersToChat([138931, 137095, 138926], createdChatId);
+
+      this.props.getAllChats();
+      alert('Чат успешно создан');
+    } catch {
+      alert('Ошибка при создании чата');
+    }
   }
 
   render() {
-    const compiledChatOptionsTemplate = chatListTemplate({
+    const compiledChatListTemplate = chatListTemplate({
       chats: this.props.chats,
       onChatClick: this.props.onChatClick,
       addButton: new Button({
@@ -55,6 +61,6 @@ export class ChatList extends Block<ChatListProps> {
       }).render(),
     });
 
-    return compiledChatOptionsTemplate;
+    return compiledChatListTemplate;
   }
 }

@@ -17,10 +17,12 @@ export abstract class Block<T={}> implements IBlock<T> {
       tagName,
       props,
       wrapperClassList,
-      elemId: props.elemId,
+      elemId: props?.elemId,
     };
 
-    this.props = this.makePropsProxy(props);
+    if (props) {
+      this.props = this.makePropsProxy(props);
+    }
 
     this.eventBus = eventBus;
 

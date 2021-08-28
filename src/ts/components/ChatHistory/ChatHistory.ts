@@ -5,7 +5,6 @@ export type Message = {
   time: string
   message: string
   date: string
-  firstOfDay: boolean
 }
 
 type ChatHistoryProps = {

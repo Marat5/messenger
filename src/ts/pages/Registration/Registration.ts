@@ -3,7 +3,7 @@ import { AuthForm } from '../../components/AuthForm/AuthForm';
 import { Button } from '../../components/Button/Button';
 import { addListenerToForm } from '../../utils';
 import { formFields } from './registrationData';
-import { register } from '../../api/auth';
+import { getProfile, register } from '../../api/auth';
 import { router } from '../../Router';
 
 type RegistrationProps = {
@@ -30,6 +30,13 @@ export class Registration extends Block<RegistrationProps> {
       if (regResponse.status !== 200) {
         return alert('Что-то пошло не так');
       }
+
+      const userResponse = await getProfile();
+      if (userResponse.status !== 200) {
+        return alert('Ошибка при загрузке данных пользователя');
+      }
+
+      localStorage.setItem('user', JSON.stringify(userResponse.response));
 
       return router.go('/chat');
     } catch {

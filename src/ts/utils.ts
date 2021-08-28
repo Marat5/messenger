@@ -43,6 +43,15 @@ export function queryStringify(data) {
   return `?${paramsArray.join('&')}`;
 }
 
+export function formatTime(dateStr) {
+  const dateObj = new Date(dateStr);
+  const format = new Intl.DateTimeFormat('en', { hour: 'numeric', minute: 'numeric' });
+  const arrResult = format.formatToParts(dateObj);
+
+  const result = arrResult.reduce(((prevResult, current) => prevResult + current.value), '');
+  return result;
+}
+
 export function isEqual(lhs, rhs) {
   return lhs === rhs;
 }
