@@ -15,7 +15,6 @@ const chatTemplate = Handlebars.compile(`
             </div>
             
             <form class="chat-mainspace__footer">
-                <input type="file" name="photo" class="custom-file-input">
                 <div class="new-message-container">
                     <input name="message" id="message" class="message-input" type="text" placeholder="Сообщение"></input>
                 </div>

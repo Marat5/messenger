@@ -5,11 +5,12 @@ import { addListenerToForm } from '../../utils';
 import { Block } from '../../Block';
 import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
 import { profileTemplate } from './profileTemplate';
-import { fieldsArray, profileData } from './profileData';
+import { fieldsArray } from './profileData';
 import { changeProfile } from '../../api/profile';
 
 type ProfileProps = {
   profileForm: string;
+  profileData: any;
 }
 
 export class Profile extends Block<ProfileProps> {
@@ -17,19 +18,33 @@ export class Profile extends Block<ProfileProps> {
     super({
       profileForm: new ProfileForm({
         fieldsArray,
-        button: new Button({ buttonText: 'Сохранить', buttonType: 'submit' }).render(),
+        button: new Button({ buttonText: 'Сохранить', buttonType: 'submit', buttonStyle: 'primary-button disabled' }).render(),
       }).render(),
+      profileData: JSON.parse(localStorage.getItem('user')),
     });
   }
 
-  onSubmit(data) {
-    changeProfile(data).then((response) => {
-      if (response.status !== 200) {
-        alert('Что-то пошло не так');
-      }
-    }).catch((err) => {
-      alert('Что-то пошло не так');
-    });
+  async onSubmit(data) {
+    alert('Редактирование профиля сейчас недоступно');
+
+    // try {
+    //   const dataToSend = {};
+    //   Object.keys(data).forEach((key) => {
+    //     if (data[key]) {
+    //       dataToSend[key] = data[key];
+    //     }
+    //   });
+    //   console.log(dataToSend);
+
+    //   if (Object.keys(dataToSend)) {
+    //     const changeProfileResponse = await changeProfile(dataToSend);
+    //     if (changeProfileResponse.status !== 200) {
+    //       throw new Error(`Статус ответа ${changeProfileResponse.status}`);
+    //     }
+    //   }
+    // } catch {
+    //   alert('Что-то пошло не так');
+    // }
   }
 
   onLogout = async () => {
@@ -53,7 +68,7 @@ export class Profile extends Block<ProfileProps> {
     }, 0);
 
     const compiledBodyTemplate = profileTemplate({
-      profileData,
+      profileData: this.props.profileData,
       profileForm: this.props.profileForm,
       exitButton: new Button({
         id: 'exitButton', buttonText: 'Выйти', buttonStyle: 'danger-button',

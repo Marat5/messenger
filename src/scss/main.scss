@@ -121,6 +121,14 @@ html, body {
     margin-top: 40px
 }
 
+button.disabled {
+    background-color: rgb(172, 172, 172);
+}
+
+button.disabled:hover {
+    cursor: default;
+}
+
 .primary-button {
     background-color: #3369F3;
     border-radius: 8px;
