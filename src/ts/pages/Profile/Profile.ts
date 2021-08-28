@@ -33,10 +33,15 @@ export class Profile extends Block<ProfileProps> {
   }
 
   onLogout = async () => {
-    const response = await logout();
-    if (response.status === 200) {
-      router.go('/login');
-    } else {
+    try {
+      const response = await logout();
+      if (response.status === 200) {
+        localStorage.removeItem('user');
+        router.go('/login');
+      } else {
+        throw new Error(`Статус ответа ${response.status}`);
+      }
+    } catch {
       alert('Ошибка при попытке выйти');
     }
   }

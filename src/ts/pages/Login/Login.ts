@@ -4,7 +4,7 @@ import { Button } from '../../components/Button/Button';
 import { Block } from '../../Block';
 import { AuthForm } from '../../components/AuthForm/AuthForm';
 import { formFields } from './loginData';
-import { login } from '../../api/auth';
+import { getProfile, login } from '../../api/auth';
 
 type LoginProps = {
   authForm: AuthForm;
@@ -30,6 +30,13 @@ export class Login extends Block<LoginProps> {
       if (loginResponse.status !== 200) {
         return alert('Что-то пошло не так');
       }
+
+      const userResponse = await getProfile();
+      if (userResponse.status !== 200) {
+        return alert('Ошибка при загрузке данных пользователя');
+      }
+
+      localStorage.setItem('user', JSON.stringify(userResponse.response));
 
       return router.go('/chat');
     } catch {

@@ -1,7 +1,6 @@
 import Handlebars from 'handlebars';
 
 const chatTemplate = Handlebars.compile(`
-
         <div class="chat-list">
         {{{ this.chatList }}}
         </div>

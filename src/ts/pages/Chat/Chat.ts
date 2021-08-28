@@ -28,21 +28,24 @@ export class Chat extends Block<ChatProps> {
     }, 'div', ['wrapper', 'row']);
   }
 
-  getAllChats() {
-    getChats()
-      .then((response) => {
-        this.setProps({
-          chats: response.response,
-          chatList: new ChatList({
-            chats: response.response,
-            getAllChats: this.getAllChats.bind(this),
-            onChatClick: this.onChatClick.bind(this),
-          }),
-        });
+  async getAllChats() {
+    try {
+      const chatsResponse = await getChats();
+      this.setProps({
+        chats: chatsResponse.response,
+        chatList: new ChatList({
+          chats: chatsResponse.response,
+          getAllChats: this.getAllChats.bind(this),
+          onChatClick: this.onChatClick.bind(this),
+        }),
       });
+    } catch {
+      alert('Ошибка при загрузке доступных чатов');
+    }
   }
 
-  getChatHistory(id) {
+  getChatHistory(chatId, userId) {
+    console.log(chatId, userId, 'yay');
     // getChatSocket({ chatId: 1, userId: 1 }).then((socket) => {
     //   socket.addEventListener('open', () => {
     //     console.log('Соединение установлено');
@@ -74,12 +77,13 @@ export class Chat extends Block<ChatProps> {
   }
 
   onChatClick(id) {
+    const userInfo = JSON.parse(localStorage.getItem('user'));
     const { chatHeader, chatHistory } = this.props;
     const selectedChatInfo = this.props.chats.find((chat) => chat.id === id);
 
     chatHeader.setProps({ selectedChatInfo });
     chatHistory.setProps({ messages });
-    this.getChatHistory(id);
+    this.getChatHistory(id, userInfo.id);
   }
 
   componentDidMount() {
