@@ -20,12 +20,7 @@ type RequestOptions = {
     hasFile?: boolean
 }
 
-export type ApiResponse = {
-    status: number
-    json(): Promise<object>
-}
-
-export class HTTPTransport {
+class HTTPTransport {
     get = (url, options: RequestOptions = {}) => {
       if (options.data) {
         url += queryStringify(options.data);
@@ -39,7 +34,7 @@ export class HTTPTransport {
 
     delete = (url, options: RequestOptions = {}) => this.request(url, { data: JSON.stringify(options.data), method: METHODS.DELETE }, options.timeout)
 
-    request = (url, options: RequestOptions = {}, timeout = 5000) => {
+    request = (url, options: RequestOptions = {}, timeout = 5000): Promise<XMLHttpRequest> => {
       const { headers, method, data } = options;
 
       return new Promise((resolve, reject) => {
@@ -56,6 +51,10 @@ export class HTTPTransport {
         xhr.onerror = reject;
         xhr.ontimeout = reject;
 
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.withCredentials = true;
+        xhr.responseType = 'json';
+
         if (headers) {
           for (const [key, value] of Object.entries(headers)) {
             xhr.setRequestHeader(`${key}`, `${value}`);
@@ -70,3 +69,5 @@ export class HTTPTransport {
       });
     };
 }
+
+export const transport = new HTTPTransport();

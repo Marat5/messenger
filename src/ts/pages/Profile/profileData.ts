@@ -2,22 +2,22 @@ const fieldsArrayjson = JSON.stringify([{
   name: 'first_name',
   label: 'Имя',
   validationRule: '^([a-z0-9]{5,})$',
-  placeholder: 'Арина',
+  placeholder: 'Марат',
 }, {
   name: 'second_name',
   label: 'Фамилия',
   validationRule: '^([a-z0-9]{5,})$',
-  placeholder: 'Иванова',
+  placeholder: 'Мухутдинов',
 }, {
   name: 'display_name',
   label: 'Отображаемое имя',
   validationRule: '^([a-z0-9]{5,})$',
-  placeholder: 'Арина',
+  placeholder: 'Marat5',
 }, {
   name: 'login',
   label: 'Логин',
   validationRule: '^([a-z0-9]{5,})$',
-  placeholder: 'arina',
+  placeholder: 'Marat5',
 }, {
   name: 'email',
   label: 'Почта',
@@ -40,10 +40,4 @@ const fieldsArrayjson = JSON.stringify([{
   placeholder: 'Новый пароль',
 }]);
 
-const profileDatajson = JSON.stringify({
-  name: 'Арина',
-  picture: null,
-});
-
 export const fieldsArray = JSON.parse(fieldsArrayjson);
-export const profileData = JSON.parse(profileDatajson);

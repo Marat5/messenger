@@ -18,9 +18,6 @@ const authFormTemplate = Handlebars.compile(`
         </div>
     </div>
 </form>
-
-<link rel="stylesheet" href="css/login.css">
-<link rel="stylesheet" href="css/registration.css">
 `);
 
 export { authFormTemplate };
