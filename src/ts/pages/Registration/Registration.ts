@@ -10,18 +10,23 @@ type RegistrationProps = {
   authForm: AuthForm;
 }
 
+const initialRegistrationProps = {
+  authForm: new AuthForm({
+    formFields,
+    containerClass: 'registration-container',
+    headerText: 'Регистрация',
+    secondaryText: 'Войти',
+    secondaryHref: '/login',
+    button: new Button({ buttonText: 'Зарегистрироваться', buttonType: 'submit' }).render(),
+  }),
+};
+
 export class Registration extends Block<RegistrationProps> {
-  constructor(props) {
-    super({
-      authForm: new AuthForm({
-        formFields,
-        containerClass: 'registration-container',
-        headerText: 'Регистрация',
-        secondaryText: 'Войти',
-        secondaryHref: '/login',
-        button: new Button({ buttonText: 'Зарегистрироваться', buttonType: 'submit' }).render(),
-      }),
-    });
+  constructor() {
+    // В компонентах, которые рендерятся роутером (верхнеуровневых), задаем initial props
+    // В них можем менять пропсы через this.setProps() для упрощения работы
+    // Без необходимости внедрять state
+    super(initialRegistrationProps);
   }
 
   onSubmit = async (data) => {

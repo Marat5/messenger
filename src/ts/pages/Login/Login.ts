@@ -10,18 +10,23 @@ type LoginProps = {
   authForm: AuthForm;
 }
 
+const initialLoginProps = {
+  authForm: new AuthForm({
+    formFields,
+    containerClass: 'login-container',
+    headerText: 'Вход',
+    secondaryText: 'Нет аккаунта?',
+    secondaryHref: '/registration',
+    button: new Button({ buttonText: 'Авторизоваться', buttonType: 'submit' }).render(),
+  }),
+};
+
 export class Login extends Block<LoginProps> {
-  constructor(props) {
-    super({
-      authForm: new AuthForm({
-        formFields,
-        containerClass: 'login-container',
-        headerText: 'Вход',
-        secondaryText: 'Нет аккаунта?',
-        secondaryHref: '/registration',
-        button: new Button({ buttonText: 'Авторизоваться', buttonType: 'submit' }).render(),
-      }),
-    });
+  constructor() {
+    // В компонентах, которые рендерятся роутером (верхнеуровневых), задаем initialProps
+    // В них можем менять пропсы через this.setProps() для упрощения работы
+    // Без необходимости внедрять state
+    super(initialLoginProps);
   }
 
   onSubmit = async (data) => {

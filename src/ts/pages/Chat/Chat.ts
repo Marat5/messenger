@@ -20,20 +20,27 @@ type ChatProps = {
   chatSocket: any;
 }
 
+const initialChatProps = {
+  selectedChatInfo: null,
+  chats: [],
+  messages: [],
+  chatSocket: null,
+  chatList: new ChatList({}),
+  chatHistory: new ChatHistory({ elemId: 'chat-history' }),
+  chatHeader: new ChatHeader({ elemId: 'chat-header' }),
+  button: new Button({
+    id: 'send-message', buttonText: '>', buttonHref: '/', buttonType: 'submit', buttonStyle: 'send-button',
+  }),
+};
+
+const tick = 0;
+
 export class Chat extends Block<ChatProps> {
   constructor() {
-    super({
-      selectedChatInfo: null,
-      chats: [],
-      messages: [],
-      chatSocket: null,
-      chatList: new ChatList({}),
-      chatHistory: new ChatHistory({ elemId: 'chat-history' }),
-      chatHeader: new ChatHeader({ elemId: 'chat-header' }),
-      button: new Button({
-        id: 'send-message', buttonText: '>', buttonHref: '/', buttonType: 'submit', buttonStyle: 'send-button',
-      }),
-    }, 'div', ['wrapper', 'row']);
+    // В компонентах, которые рендерятся роутером (верхнеуровневых), задаем initial props
+    // В них можем менять пропсы через this.setProps() для упрощения работы
+    // Без необходимости внедрять state
+    super(initialChatProps, 'div', ['wrapper', 'row']);
   }
 
   componentDidMount() {
@@ -81,6 +88,8 @@ export class Chat extends Block<ChatProps> {
     const userData = JSON.parse(localStorage.getItem('user'));
 
     chatSocket.addEventListener('open', () => {
+      // Так как апишка с сокетами учебная и ей много кто пользуется
+      // Соединения обраываются сервером после 60сек без активности
       console.log('Соединение установлено');
 
       chatSocket.send(JSON.stringify({
