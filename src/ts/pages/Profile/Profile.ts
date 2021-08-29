@@ -13,15 +13,20 @@ type ProfileProps = {
   profileData: any;
 }
 
+const initialProfileProps = {
+  profileForm: new ProfileForm({
+    fieldsArray,
+    button: new Button({ buttonText: 'Сохранить', buttonType: 'submit', buttonStyle: 'primary-button disabled' }).render(),
+  }).render(),
+  profileData: JSON.parse(localStorage.getItem('user')),
+};
+
 export class Profile extends Block<ProfileProps> {
-  constructor(props) {
-    super({
-      profileForm: new ProfileForm({
-        fieldsArray,
-        button: new Button({ buttonText: 'Сохранить', buttonType: 'submit', buttonStyle: 'primary-button disabled' }).render(),
-      }).render(),
-      profileData: JSON.parse(localStorage.getItem('user')),
-    });
+  constructor() {
+    // В компонентах, которые рендерятся роутером (верхнеуровневых), задаем initial props
+    // В них можем менять пропсы через this.setProps() для упрощения работы
+    // Без необходимости внедрять state
+    super(initialProfileProps);
   }
 
   async onSubmit(data) {

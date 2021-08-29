@@ -43,7 +43,7 @@ export class ChatList extends Block<ChatListProps> {
       const createdChatId = createChatResponse.response.id;
 
       // Чатик всегда создается для 3 юзеров
-      addUsersToChat([138931, 137095, 138926], createdChatId);
+      addUsersToChat([140566, 137095, 138926], createdChatId);
 
       this.props.getAllChats();
       alert('Чат успешно создан');
