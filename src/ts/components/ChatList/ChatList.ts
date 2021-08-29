@@ -26,7 +26,10 @@ export class ChatList extends Block<ChatListProps> {
 
   componentDidMount() {
     setTimeout(() => {
-      document.getElementById('addButton').onclick = this.onCreateChat.bind(this);
+      const addButtonElement = document.getElementById('addButton');
+      if (addButtonElement) {
+        addButtonElement.onclick = this.onCreateChat.bind(this);
+      }
     }, 0);
   }
 
