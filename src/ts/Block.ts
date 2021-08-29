@@ -1,148 +1,150 @@
-import { AuthForm } from './components/AuthForm/AuthForm';
-import { Button } from './components/Button/Button';
-import { ChatHistory } from './components/ChatHistory/ChatHistory';
-import { ChatList } from './components/ChatList/ChatList';
-import { ProfileForm } from './components/ProfileForm/ProfileForm';
+/* eslint-disable no-param-reassign */
 import { EventBus } from './event-bus';
 
 type BlockProps = {
-    tagName: string
-    wrapperClassList: string[]
-    button?: Button
-    chatList?: ChatList
-    chatHistory?: ChatHistory
-    authForm?: AuthForm
-    profileForm?: ProfileForm
+elemId?: string;
 }
 
-export interface Block {
-    props: BlockProps
-    eventBus: EventBus
+export interface IBlock<T> {
+props: BlockProps & T
+eventBus: EventBus
 }
 
-
-export abstract class Block {
-    static EVENTS = {
-        INIT: "init",
-        FLOW_CDM: "flow:component-did-mount",
-        FLOW_CDU: "flow:component-did-update",
-        FLOW_RENDER: "flow:render"
+export abstract class Block<T={}> implements IBlock<T> {
+  constructor(props: BlockProps & T, tagName = 'div', wrapperClassList: string[] = ['wrapper']) {
+    const eventBus = new EventBus();
+    this.meta = {
+      tagName,
+      props,
+      wrapperClassList,
+      elemId: props?.elemId,
     };
 
-    element = null;
-    private meta = null;
-
-    constructor(tagName = "div", props = {}, wrapperClassList: string[] = []) {
-        const eventBus = new EventBus();
-        this.meta = {
-            tagName,
-            props,
-            wrapperClassList,
-        };
-
-        this.props = this.makePropsProxy(props);
-
-        this.eventBus = eventBus;
-
-        this.registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
+    if (props) {
+      this.props = this.makePropsProxy(props);
     }
 
-    private registerEvents(eventBus) {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    this.eventBus = eventBus;
+
+    this.registerEvents(eventBus);
+    eventBus.emit(Block.EVENTS.INIT);
+  }
+
+  static EVENTS = {
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
+  };
+
+  element = null;
+
+  private meta = null;
+
+  eventBus: EventBus;
+
+  props: T & BlockProps;
+
+  private registerEvents(eventBus) {
+    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+  }
+
+  private createResources() {
+    const { tagName, wrapperClassList, elemId } = this.meta;
+    this.element = document.createElement(tagName);
+    if (elemId) {
+      this.element.id = elemId;
+    }
+    if (wrapperClassList.length) {
+      wrapperClassList.forEach((className) => {
+        this.element.classList.add(className);
+      });
+    }
+  }
+
+  init() {
+    this.createResources();
+    this.eventBus.emit(Block.EVENTS.FLOW_CDM);
+  }
+
+  _componentDidMount() {
+    if (this.componentDidMount) {
+      this.componentDidMount();
+    }
+    this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+  }
+
+  _componentDidUpdate(oldProps, newProps) {
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (response) {
+      this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    }
+  }
+
+  abstract render()
+
+  componentDidMount() {}
+
+  componentDidUpdate(oldProps, newProps) {
+    return true;
+  }
+
+  _render() {
+    const compiledHBTemplate = this.render();
+
+    // Если это первый рендер, то меняем только содержимое элемента
+    // В DOM он попадет когда роутер отрендерит корневой компонент
+    this.element.innerHTML = compiledHBTemplate;
+
+    // Если у элемента есть айди и он уже есть в DOM, то рендерим элемент в DOM
+    if (this.element.id) {
+      const domElement = document.getElementById(this.element.id);
+      if (domElement) {
+        domElement.innerHTML = compiledHBTemplate;
+      }
+    }
+  }
+
+  setProps = (nextProps) => {
+    if (!nextProps) {
+      return;
     }
 
-    private createResources() {
-        const { tagName, wrapperClassList } = this.meta;
-        this.element = this.createDocumentElement(tagName);
-        if (wrapperClassList.length) {
-            wrapperClassList.forEach(className => {
-                this.element.classList.add(className)
-            });
-        }
-    }
+    Object.assign(this.props, nextProps);
+  };
 
-    init() {
-        this.createResources();
-        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
-    }
+  getContent() {
+    return this.element;
+  }
 
-    _componentDidMount() {
-        if (this.componentDidMount) {
-            this.componentDidMount();
-        }
-        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-    }
-
-    // Может переопределять пользователь, необязательно трогать
-    componentDidMount() {}
-
-    _componentDidUpdate(oldProps, newProps) {
-        const response = this.componentDidUpdate(oldProps, newProps);
-        if (response) {
-            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-        }
-    }
-
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps, newProps) {
+  private makePropsProxy(props) {
+    const handler = {
+      set: (target, prop, value) => {
+        const { eventBus } = this;
+        target[prop] = value;
+        eventBus.emit(Block.EVENTS.FLOW_CDU);
         return true;
-    }
-
-    setProps = nextProps => {
-        if (!nextProps) {
-            return;
-        }
-
-
-        Object.assign(this.props, nextProps);
+      },
+      deleteProperty: () => {
+        throw new Error('Нет доступа');
+      },
     };
 
-    _render() {
-        // Я не нашел способ вернуть из handlebars ноду. В общем чате отвечают, что оставили innerHTML
-        this.element.innerHTML = this.render();
-    }
+    return new Proxy(props, handler);
+  }
 
-    // Может переопределять пользователь, необязательно трогать
-    abstract render()
+  show() {
+    this.element.style.display = 'block';
+  }
 
-    getContent() {
-        return this.element;
-    }
+  hide() {
+    this.element.style.display = 'none';
+  }
 
-    private makePropsProxy(props) {
-        const handler = {
-            set: (target, prop, value) => {
-                let eventBus = this.eventBus;
-                target[prop] = value;
-                eventBus.emit(Block.EVENTS.FLOW_CDU);
-                return true;
-            },
-            deleteProperty: () => {
-                throw new Error('Нет доступа')
-            }
-        }
-
-        return new Proxy(props, handler);
-    }
-
-    private createDocumentElement(tagName) {
-        // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
-        return document.createElement(tagName);
-    }
-
-    show() {
-        this.element.style.display = 'block';
-    }
-
-    hide() {
-        this.element.style.display = 'none';
-    }
-
-    remove() {
-        this.element.remove();
-    }
+  remove() {
+    this.element.remove();
+  }
 }

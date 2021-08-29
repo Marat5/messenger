@@ -1,12 +1,17 @@
-import { Block } from "../../Block";
-import {authFormTemplate} from "./authFormTemplate";
+import { Block } from '../../Block';
+import { authFormTemplate } from './authFormTemplate';
 
-export class AuthForm extends Block {
-    constructor(props) {
-        super("div", props, []);
-    }
+type AuthFormProps = {
+  button: string;
+  formFields: any;
+  containerClass?: string;
+  headerText: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+}
 
-    render() {
-        return authFormTemplate(this.props)
-    }
+export class AuthForm extends Block<AuthFormProps> {
+  render() {
+    return authFormTemplate(this.props);
+  }
 }

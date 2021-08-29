@@ -1,15 +1,13 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let profileTemplate = Handlebars.compile(`
+const profileTemplate = Handlebars.compile(`
 <div class="profile-info">
     <label for="avatar" id="avaterLabel" class="profile-picture"></label>
     <input type="file" id="avatar" style="display: none;"/>
-    <h1 class="profile-name">{{this.profileData.name}}</h1>
+    <h1 class="profile-name">{{this.profileData.login}}</h1>
 </div>
 {{{this.profileForm}}}
-
-<link rel="stylesheet" href="css/profile.css">
+{{{this.exitButton}}}
 `);
 
-export {profileTemplate}
+export { profileTemplate };

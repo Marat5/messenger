@@ -1,7 +1,6 @@
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
 
-
-let profileFormTemplate = Handlebars.compile(`
+const profileFormTemplate = Handlebars.compile(`
 <form id="profile-form" class="profile__form">
     {{#each this.fieldsArray}}
     <div class="profile__textfield">
@@ -10,7 +9,7 @@ let profileFormTemplate = Handlebars.compile(`
     </div>
     {{/each}}
     {{{this.button}}}
-    </form>
+</form>
 `);
 
-export {profileFormTemplate}
+export { profileFormTemplate };

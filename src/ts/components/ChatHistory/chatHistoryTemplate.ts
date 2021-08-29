@@ -1,18 +1,16 @@
-import {ChatMessage} from '../ChatMessage/ChatMessage';
-// import Handlebars from 'handlebars';
+import Handlebars from 'handlebars';
+import { ChatMessage } from '../ChatMessage/ChatMessage';
 
-
-let chatHistoryTemplate = (messages) => {
-    //Куда поместить хелперы, чтобы они регистрировались только один раз, я не понял(
-    Handlebars.registerHelper("printMessages", function () {
-        let html = '';
-        messages.forEach(message => {
-            html += new ChatMessage({message}).render();
-        })
-        return html;
+Handlebars.registerHelper('printMessages', (messages) => {
+  let html = '';
+  if (messages) {
+    messages.forEach((message) => {
+      html += new ChatMessage({ message }).render();
     });
+  }
+  return html;
+});
 
-    return Handlebars.compile(`{{{printMessages messages}}}`);
-}
+const chatHistoryTemplate = Handlebars.compile('{{{printMessages messages}}}');
 
-export {chatHistoryTemplate}
+export { chatHistoryTemplate };

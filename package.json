@@ -5,10 +5,12 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "build": "tsc && node buildHelper && sass src/scss:static/css && cp -r src/html/. static",
-    "test": "./node_modules/.bin/mocha --timeout 10000 -r jsdom-global/register",
-    "watch": "tsc -w",
-    "lint": "node_modules/.bin/eslint ."
+    "build": "npm run clean; webpack; sass src/scss/main.scss:dist/css/main.css; cp src/html/index.html dist/index.html;",
+    "build:nowebpack": "npm run clean; tsc && node buildHelper && sass src/scss/main.scss:dist/css/main.css; && cp src/html/indexNoWebPack.html dist/index.html",
+    "watch": "npm run clean; sass src/scss/main.scss:dist/css/main.css; cp src/html/index.html dist/index.html; webpack --watch;",
+    "test": "mocha --timeout 10000 -r jsdom-global/register",
+    "lint": "npx eslint --ext .ts --fix .",
+    "clean": "rimraf dist"
   },
   "husky": {
     "hooks": {
@@ -48,13 +50,14 @@
   "devDependencies": {
     "@types/handlebars": "^4.1.0",
     "@types/node": "^14.14.22",
-    "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-xo": "^0.34.0",
     "eslint-import-resolver-webpack": "^0.13.0",
     "eslint-plugin-import": "^2.22.1",
+    "html-webpack-plugin": "^4.5.2",
     "husky": "^4.3.8",
     "jsdom": "16.4.0",
     "jsdom-global": "3.0.2",
